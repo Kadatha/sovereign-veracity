@@ -1,0 +1,173 @@
+{
+  "title": "Sovereign Veracity \u2014 critic benchmarks",
+  "exported_at": "2026-07-19T04:49:47.580009+00:00",
+  "db": "sv_corpus.db",
+  "runs": {
+    "pilot-01": {
+      "n_results": 6000,
+      "n_errors": 0,
+      "judges": [
+        "hhem_gate",
+        "node2_critic",
+        "secondary_judge"
+      ],
+      "path": "runs/pilot-01/",
+      "headline": {
+        "hhem_gate": {
+          "recall": 0.731,
+          "fpr": 0.25,
+          "precision_at_5pct": 0.13336982302499542,
+          "n": 2000
+        },
+        "node2_critic": {
+          "recall": 0.901,
+          "fpr": 0.034,
+          "precision_at_5pct": 0.5824175824175825,
+          "n": 2000
+        },
+        "secondary_judge": {
+          "recall": 0.954,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000
+        }
+      }
+    },
+    "pilot-02": {
+      "n_results": 16000,
+      "n_errors": 0,
+      "judges": [
+        "ensemble_and",
+        "ensemble_or",
+        "hhem_gate",
+        "node2_critic",
+        "numeric_gate",
+        "precision_stack",
+        "secondary_judge",
+        "ship_stack"
+      ],
+      "path": "runs/pilot-02/",
+      "headline": {
+        "ensemble_and": {
+          "recall": 0.855,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000
+        },
+        "ensemble_or": {
+          "recall": 0.989,
+          "fpr": 0.075,
+          "precision_at_5pct": 0.4096934548467274,
+          "n": 2000
+        },
+        "hhem_gate": {
+          "recall": 0.731,
+          "fpr": 0.25,
+          "precision_at_5pct": 0.13336982302499542,
+          "n": 2000
+        },
+        "node2_critic": {
+          "recall": 0.869,
+          "fpr": 0.074,
+          "precision_at_5pct": 0.38197802197802205,
+          "n": 2000
+        },
+        "numeric_gate": {
+          "recall": 0.608,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000
+        },
+        "precision_stack": {
+          "recall": 0.944,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000
+        },
+        "secondary_judge": {
+          "recall": 0.975,
+          "fpr": 0.001,
+          "precision_at_5pct": 0.9808853118712274,
+          "n": 2000
+        },
+        "ship_stack": {
+          "recall": 0.989,
+          "fpr": 0.075,
+          "precision_at_5pct": 0.4096934548467274,
+          "n": 2000
+        }
+      }
+    },
+    "pilot-02-smoke": {
+      "n_results": 120,
+      "n_errors": 0,
+      "judges": [
+        "ensemble_and",
+        "ensemble_or",
+        "hhem_gate",
+        "node2_critic",
+        "numeric_gate",
+        "precision_stack",
+        "secondary_judge",
+        "ship_stack"
+      ],
+      "path": "runs/pilot-02-smoke/",
+      "headline": {
+        "ensemble_and": {
+          "recall": 0.8181818181818182,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 15
+        },
+        "ensemble_or": {
+          "recall": 1.0,
+          "fpr": 0.25,
+          "precision_at_5pct": 0.1739130434782609,
+          "n": 15
+        },
+        "hhem_gate": {
+          "recall": 0.9090909090909091,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 15
+        },
+        "node2_critic": {
+          "recall": 0.8181818181818182,
+          "fpr": 0.25,
+          "precision_at_5pct": 0.14693877551020412,
+          "n": 15
+        },
+        "numeric_gate": {
+          "recall": 0.6363636363636364,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 15
+        },
+        "precision_stack": {
+          "recall": 1.0,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 15
+        },
+        "secondary_judge": {
+          "recall": 1.0,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 15
+        },
+        "ship_stack": {
+          "recall": 1.0,
+          "fpr": 0.25,
+          "precision_at_5pct": 0.1739130434782609,
+          "n": 15
+        }
+      }
+    }
+  },
+  "ship_targets": {
+    "recall_min": 0.95,
+    "fpr_max": 0.012,
+    "precision_at_5pct_min": 0.8,
+    "ece_max": 0.1
+  }
+}

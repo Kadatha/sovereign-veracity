@@ -1,0 +1,643 @@
+{
+  "exported_at": "2026-07-19T04:49:47.678699+00:00",
+  "ship_targets": {
+    "recall_min": 0.95,
+    "fpr_max": 0.012,
+    "precision_at_5pct_min": 0.8,
+    "ece_max": 0.1
+  },
+  "meta": {
+    "run_id": "pilot-02",
+    "n_results": 16000,
+    "n_errors": 0,
+    "judges": [
+      "ensemble_and",
+      "ensemble_or",
+      "hhem_gate",
+      "node2_critic",
+      "numeric_gate",
+      "precision_stack",
+      "secondary_judge",
+      "ship_stack"
+    ],
+    "judge_versions": {
+      "ensemble_and": "ensemble|and|d387a203c9ef",
+      "ensemble_or": "ensemble|or|0b22ac7287dd",
+      "hhem_gate": "hhem@http://192.168.1.138:8080/check|threshold:0.5|mode:pairs",
+      "node2_critic": "patronus-lynx:latest|prompt:93b994ed68cc|api:chat|think:False",
+      "numeric_gate": "numeric|arith:True|rtol:1e-06|atol:0.0001",
+      "precision_stack": "ensemble|precision_stack|db18c86a7e83",
+      "secondary_judge": "qwen3.5:35b-a3b|prompt:93b994ed68cc|api:chat|think:False",
+      "ship_stack": "ensemble|ship_stack|15117d189475"
+    }
+  },
+  "corpus": {
+    "n_cases": 2000,
+    "by_seed_source": {
+      "example_steel_brief.txt": 2000
+    },
+    "by_category": {
+      "claim_verification": 500,
+      "data_extraction": 500,
+      "reasoning_numeric": 500,
+      "summarization": 500
+    },
+    "by_ground_truth": {
+      "clean": 1000,
+      "confabulated": 1000
+    },
+    "by_failure_type": {
+      "entity_swap": 118,
+      "fabricated_detail": 58,
+      "negation_flip": 121,
+      "number_perturb": 647,
+      "unsupported_generalization": 56
+    }
+  },
+  "judges": {
+    "ensemble_and": {
+      "n": 2000,
+      "tp": 855,
+      "fn": 145,
+      "fp": 0,
+      "tn": 1000,
+      "accuracy": 0.9275,
+      "recall": 0.855,
+      "fpr": 0.0,
+      "fnr": 0.145,
+      "precision_at_prevalence": {
+        "0.03": 1.0,
+        "0.05": 1.0,
+        "0.08": 1.0,
+        "0.5": 1.0
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "data_extraction": {
+          "hit": 145,
+          "total": 250,
+          "recall": 0.58
+        },
+        "reasoning_numeric": {
+          "hit": 226,
+          "total": 250,
+          "recall": 0.904
+        },
+        "summarization": {
+          "hit": 234,
+          "total": 250,
+          "recall": 0.936
+        }
+      },
+      "recall_by_failure_type": {
+        "negation_flip": {
+          "hit": 121,
+          "total": 121,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 118,
+          "total": 118,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 57,
+          "total": 58,
+          "recall": 0.9827586206896551
+        },
+        "unsupported_generalization": {
+          "hit": 48,
+          "total": 56,
+          "recall": 0.8571428571428571
+        },
+        "number_perturb": {
+          "hit": 511,
+          "total": 647,
+          "recall": 0.7897990726429676
+        }
+      },
+      "ece": 0.44999999999999996,
+      "n_with_confidence": 855,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": true
+      }
+    },
+    "ensemble_or": {
+      "n": 2000,
+      "tp": 989,
+      "fn": 11,
+      "fp": 75,
+      "tn": 925,
+      "accuracy": 0.957,
+      "recall": 0.989,
+      "fpr": 0.075,
+      "fnr": 0.011,
+      "precision_at_prevalence": {
+        "0.03": 0.28968951376684243,
+        "0.05": 0.4096934548467274,
+        "0.08": 0.5341614906832298,
+        "0.5": 0.9295112781954886
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "data_extraction": {
+          "hit": 239,
+          "total": 250,
+          "recall": 0.956
+        },
+        "reasoning_numeric": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "summarization": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        }
+      },
+      "recall_by_failure_type": {
+        "negation_flip": {
+          "hit": 121,
+          "total": 121,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 118,
+          "total": 118,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 58,
+          "total": 58,
+          "recall": 1.0
+        },
+        "unsupported_generalization": {
+          "hit": 56,
+          "total": 56,
+          "recall": 1.0
+        },
+        "number_perturb": {
+          "hit": 636,
+          "total": 647,
+          "recall": 0.9829984544049459
+        }
+      },
+      "ece": 0.8795112781954887,
+      "n_with_confidence": 1064,
+      "meets_ship": {
+        "recall": true,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "hhem_gate": {
+      "n": 2000,
+      "tp": 731,
+      "fn": 269,
+      "fp": 250,
+      "tn": 750,
+      "accuracy": 0.7405,
+      "recall": 0.731,
+      "fpr": 0.25,
+      "fnr": 0.269,
+      "precision_at_prevalence": {
+        "0.03": 0.08293310138789092,
+        "0.05": 0.13336982302499542,
+        "0.08": 0.20271769273433166,
+        "0.5": 0.745158002038736
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 173,
+          "total": 250,
+          "recall": 0.692
+        },
+        "data_extraction": {
+          "hit": 215,
+          "total": 250,
+          "recall": 0.86
+        },
+        "reasoning_numeric": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "summarization": {
+          "hit": 94,
+          "total": 250,
+          "recall": 0.376
+        }
+      },
+      "recall_by_failure_type": {
+        "number_perturb": {
+          "hit": 564,
+          "total": 647,
+          "recall": 0.8717156105100463
+        },
+        "fabricated_detail": {
+          "hit": 43,
+          "total": 58,
+          "recall": 0.7413793103448276
+        },
+        "entity_swap": {
+          "hit": 57,
+          "total": 118,
+          "recall": 0.4830508474576271
+        },
+        "negation_flip": {
+          "hit": 58,
+          "total": 121,
+          "recall": 0.4793388429752066
+        },
+        "unsupported_generalization": {
+          "hit": 9,
+          "total": 56,
+          "recall": 0.16071428571428573
+        }
+      },
+      "ece": 0.15109999999999996,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "node2_critic": {
+      "n": 2000,
+      "tp": 869,
+      "fn": 131,
+      "fp": 74,
+      "tn": 926,
+      "accuracy": 0.8975,
+      "recall": 0.869,
+      "fpr": 0.074,
+      "fnr": 0.131,
+      "precision_at_prevalence": {
+        "0.03": 0.2664282064384262,
+        "0.05": 0.38197802197802205,
+        "0.08": 0.5052325581395348,
+        "0.5": 0.9215270413573702
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "data_extraction": {
+          "hit": 155,
+          "total": 250,
+          "recall": 0.62
+        },
+        "reasoning_numeric": {
+          "hit": 230,
+          "total": 250,
+          "recall": 0.92
+        },
+        "summarization": {
+          "hit": 234,
+          "total": 250,
+          "recall": 0.936
+        }
+      },
+      "recall_by_failure_type": {
+        "negation_flip": {
+          "hit": 121,
+          "total": 121,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 118,
+          "total": 118,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 57,
+          "total": 58,
+          "recall": 0.9827586206896551
+        },
+        "unsupported_generalization": {
+          "hit": 48,
+          "total": 56,
+          "recall": 0.8571428571428571
+        },
+        "number_perturb": {
+          "hit": 525,
+          "total": 647,
+          "recall": 0.8114374034003091
+        }
+      },
+      "ece": null,
+      "n_with_confidence": 0,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "numeric_gate": {
+      "n": 2000,
+      "tp": 608,
+      "fn": 392,
+      "fp": 0,
+      "tn": 1000,
+      "accuracy": 0.804,
+      "recall": 0.608,
+      "fpr": 0.0,
+      "fnr": 0.392,
+      "precision_at_prevalence": {
+        "0.03": 1.0,
+        "0.05": 1.0,
+        "0.08": 1.0,
+        "0.5": 1.0
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 85,
+          "total": 250,
+          "recall": 0.34
+        },
+        "data_extraction": {
+          "hit": 193,
+          "total": 250,
+          "recall": 0.772
+        },
+        "reasoning_numeric": {
+          "hit": 248,
+          "total": 250,
+          "recall": 0.992
+        },
+        "summarization": {
+          "hit": 82,
+          "total": 250,
+          "recall": 0.328
+        }
+      },
+      "recall_by_failure_type": {
+        "number_perturb": {
+          "hit": 583,
+          "total": 647,
+          "recall": 0.9010819165378671
+        },
+        "fabricated_detail": {
+          "hit": 25,
+          "total": 58,
+          "recall": 0.43103448275862066
+        },
+        "negation_flip": {
+          "hit": 0,
+          "total": 121,
+          "recall": 0.0
+        },
+        "entity_swap": {
+          "hit": 0,
+          "total": 118,
+          "recall": 0.0
+        },
+        "unsupported_generalization": {
+          "hit": 0,
+          "total": 56,
+          "recall": 0.0
+        }
+      },
+      "ece": 0.23719999999999997,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": true
+      }
+    },
+    "precision_stack": {
+      "n": 2000,
+      "tp": 944,
+      "fn": 56,
+      "fp": 0,
+      "tn": 1000,
+      "accuracy": 0.972,
+      "recall": 0.944,
+      "fpr": 0.0,
+      "fnr": 0.056,
+      "precision_at_prevalence": {
+        "0.03": 1.0,
+        "0.05": 1.0,
+        "0.08": 1.0,
+        "0.5": 1.0
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "data_extraction": {
+          "hit": 203,
+          "total": 250,
+          "recall": 0.812
+        },
+        "reasoning_numeric": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "summarization": {
+          "hit": 241,
+          "total": 250,
+          "recall": 0.964
+        }
+      },
+      "recall_by_failure_type": {
+        "negation_flip": {
+          "hit": 121,
+          "total": 121,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 118,
+          "total": 118,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 58,
+          "total": 58,
+          "recall": 1.0
+        },
+        "number_perturb": {
+          "hit": 599,
+          "total": 647,
+          "recall": 0.9258114374034003
+        },
+        "unsupported_generalization": {
+          "hit": 48,
+          "total": 56,
+          "recall": 0.8571428571428571
+        }
+      },
+      "ece": 0.08280000000000003,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": true
+      }
+    },
+    "secondary_judge": {
+      "n": 2000,
+      "tp": 975,
+      "fn": 25,
+      "fp": 1,
+      "tn": 999,
+      "accuracy": 0.987,
+      "recall": 0.975,
+      "fpr": 0.001,
+      "fnr": 0.025,
+      "precision_at_prevalence": {
+        "0.03": 0.9679020516214428,
+        "0.05": 0.9808853118712274,
+        "0.08": 0.988342625443487,
+        "0.5": 0.9989754098360656
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "data_extraction": {
+          "hit": 229,
+          "total": 250,
+          "recall": 0.916
+        },
+        "reasoning_numeric": {
+          "hit": 246,
+          "total": 250,
+          "recall": 0.984
+        },
+        "summarization": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        }
+      },
+      "recall_by_failure_type": {
+        "negation_flip": {
+          "hit": 121,
+          "total": 121,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 118,
+          "total": 118,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 58,
+          "total": 58,
+          "recall": 1.0
+        },
+        "unsupported_generalization": {
+          "hit": 56,
+          "total": 56,
+          "recall": 1.0
+        },
+        "number_perturb": {
+          "hit": 622,
+          "total": 647,
+          "recall": 0.9613601236476044
+        }
+      },
+      "ece": null,
+      "n_with_confidence": 0,
+      "meets_ship": {
+        "recall": true,
+        "fpr": true,
+        "precision_at_5pct": true
+      }
+    },
+    "ship_stack": {
+      "n": 2000,
+      "tp": 989,
+      "fn": 11,
+      "fp": 75,
+      "tn": 925,
+      "accuracy": 0.957,
+      "recall": 0.989,
+      "fpr": 0.075,
+      "fnr": 0.011,
+      "precision_at_prevalence": {
+        "0.03": 0.28968951376684243,
+        "0.05": 0.4096934548467274,
+        "0.08": 0.5341614906832298,
+        "0.5": 0.9295112781954886
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "data_extraction": {
+          "hit": 239,
+          "total": 250,
+          "recall": 0.956
+        },
+        "reasoning_numeric": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "summarization": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        }
+      },
+      "recall_by_failure_type": {
+        "negation_flip": {
+          "hit": 121,
+          "total": 121,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 118,
+          "total": 118,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 58,
+          "total": 58,
+          "recall": 1.0
+        },
+        "unsupported_generalization": {
+          "hit": 56,
+          "total": 56,
+          "recall": 1.0
+        },
+        "number_perturb": {
+          "hit": 636,
+          "total": 647,
+          "recall": 0.9829984544049459
+        }
+      },
+      "ece": 0.007000000000000006,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": true,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    }
+  }
+}

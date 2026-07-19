@@ -1,0 +1,10 @@
+# Never ship local eval DBs or private seeds via this package
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+**/seeds/private/
+**/seeds/*proprietary*
+*.log
+__pycache__/
+.DS_Store
