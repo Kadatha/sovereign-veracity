@@ -12,6 +12,8 @@ Humans: start at [`README.md`](./README.md). Method depth: [`METHOD.md`](./METHO
 
 Open method and pilot results for a **local-first veracity / faithfulness critic stack** (Node2-oriented). Pilot-01 is a single-seed baseline; pilot-02 is full **n=2000** with hardened prompts, a deterministic numeric gate, and ensemble policies. Prefer **`precision_stack`** for low-FPR gating and **`ship_stack`** for max recall when flags can be absorbed. Node2 alone is **not** claimed production-ready.
 
+**Why open:** if intelligence is infrastructure, metered closed APIs at tens of dollars per million tokens while open/local stacks run at cents (or free on owned hardware) is an economic and security handicap—not a lifestyle choice. This repo is reproducible measurement for sovereign critics, not a cloud scoreboard. See **Why this matters** in [`README.md`](./README.md).
+
 ---
 
 ## Stack map (Node2 lab)

@@ -11,6 +11,12 @@ Full details, caveats (single-seed corpus, prompt iteration effects), and failur
 
 ---
 
+## Why this matters
+
+The future is open source. We need to embrace it and get on with it. If AI is the through line of future economic (and security) activity, locking the stack behind closed models that cost **$26–56 per 1M tokens** while open / local intelligence runs at roughly **$0.50–1** (or free on your own silicon) is not a branding preference—it is a structural handicap: commercial and strategic. Adversaries and competitors who can train, critique, and deploy on abundant open weights should not be the only ones who can afford to do so at scale. That is the abundance and open-ecosystem argument in plain numbers—the same pressure [open-source AI advocacy](https://x.com/chamath) keeps returning to: close the door on open source and you force a ruinous cost asymmetry on defense *and* growth. **Sovereign Veracity** is a small, concrete piece of that stack: local-first *measurement* of faithfulness critics (Node2 / Lynx / ensembles), so sovereign agents can be judged without a cloud tax and without outsourcing the scoreboard. Fork it, re-seed it, beat the numbers.
+
+---
+
 ## Start here
 
 | Reader | Entry |
@@ -127,9 +133,10 @@ Details: [`METHOD.md`](./METHOD.md) and [`AGENT_SYNOPSIS.md`](./AGENT_SYNOPSIS.m
 
 ---
 
-## License / use
+## Contributing & license
 
-Method, metrics, and documentation are intended for open collaboration with local / sovereign agent stacks.  
-Do not republish proprietary seed text or evaluation databases that embed it.
+- **License:** [MIT](./LICENSE)  
+- **Collaborate:** [CONTRIBUTING.md](./CONTRIBUTING.md) · [Code of Conduct](./.github/CODE_OF_CONDUCT.md)  
+- **Boundaries:** [NOTICE.md](./NOTICE.md) (what not to overclaim; keep proprietary seeds private)
 
 Built for sovereign agents — **fork, extend, improve.**
