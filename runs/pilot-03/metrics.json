@@ -1,0 +1,743 @@
+{
+  "exported_at": "2026-07-20T00:35:59.023910+00:00",
+  "ship_targets": {
+    "recall_min": 0.95,
+    "fpr_max": 0.012,
+    "precision_at_5pct_min": 0.8,
+    "ece_max": 0.1
+  },
+  "meta": {
+    "run_id": "pilot-03",
+    "n_results": 15998,
+    "n_errors": 18,
+    "judges": [
+      "ensemble_and",
+      "ensemble_or",
+      "hhem_gate",
+      "node2_critic",
+      "numeric_gate",
+      "precision_stack",
+      "secondary_judge",
+      "ship_stack"
+    ],
+    "judge_versions": {
+      "ensemble_and": "ensemble|and|d387a203c9ef",
+      "ensemble_or": "ensemble|or|0b22ac7287dd",
+      "hhem_gate": "hhem@http://192.168.1.138:8080/check|threshold:0.5|mode:pairs",
+      "node2_critic": "patronus-lynx:latest|prompt:93b994ed68cc|api:chat|think:False",
+      "numeric_gate": "numeric|arith:True|rtol:1e-06|atol:0.0001",
+      "precision_stack": "ensemble|precision_stack|db18c86a7e83",
+      "secondary_judge": "qwen3.5:35b-a3b|prompt:93b994ed68cc|api:chat|think:False",
+      "ship_stack": "ensemble|ship_stack|15117d189475"
+    }
+  },
+  "corpus": {
+    "n_cases": 2000,
+    "by_seed_source": {
+      "example_steel_brief.txt": 37,
+      "feather_brief_data-center-builds-are-driving-steel-dem_2026-07-12_ca5672fe.txt": 31,
+      "feather_brief_steel-demand-and-physical-market_2026-07-13_7817ee5a.txt": 43,
+      "feather_dossier_data-center-builds-are-driving-steel-dem_2026-07-12_620216c2.txt": 46,
+      "feather_dossier_evidence-review-nue-stld-cmc-etn-pwr-vrt_2026-07-12_e9e40a7f.txt": 45,
+      "feather_dossier_steel-companies-exposed-to-data-center-c_2026-07-12_b9d0f04f.txt": 35,
+      "feather_dossier_steel-demand-and-physical-market_2026-07-13_3161ccdd.txt": 31,
+      "pulse_pulse_2026-07-13_9fbffe2f.txt": 39,
+      "spark_2026-07-13_quant_illusion_equiv_ready_459f9013.txt": 27,
+      "spark_critic_critic_20260714_002305_deep_action_20260713_191923_2026-07-13-t_16411106.txt": 36,
+      "spark_critic_critic_20260714_134214_deep_action_20260714_080159_2026-07-14-z_c8cf8294.txt": 34,
+      "spark_critic_critic_20260715_120953_deep_orch_20260715_013124_20260714-sandb_2011bebc.txt": 29,
+      "spark_critic_critic_20260715_124155_deep_orch_20260715_013127_20260714-lyell_62b193eb.txt": 45,
+      "spark_critic_critic_20260718_020303_deep_orch_20260717_205811_20260714-lyell_83e1df85.txt": 32,
+      "spark_critic_critic_20260718_020842_deep_orch_20260715_013127_20260714-thcla_02d75477.txt": 18,
+      "spark_critic_critic_spark_20260713_034807_01_deep_hermes_agent_b5c1dcde.txt": 18,
+      "spark_critic_critic_spark_20260713_134928_02_deep_obsidian_vault_b67fbd6a.txt": 23,
+      "spark_critic_critic_spark_20260713_140440_03_deep_karpathy_autoresearch_d9450b30.txt": 38,
+      "spark_critic_critic_spark_20260713_143448_03_deep_karpathy_autoresearch_fe0cdf62.txt": 33,
+      "spark_critic_critic_spark_20260713_145513_03_deep_karpathy_autoresearch_1aa2efe8.txt": 44,
+      "spark_critic_critic_spark_20260713_150428_03_deep_karpathy_autoresearch_1570584d.txt": 35,
+      "spark_critic_critic_spark_20260713_152141_04_deep_verification_plane_sota_92afe5ac.txt": 33,
+      "spark_deep_20260713_034807_01_deep_hermes_agent_passes_edcdff1f.txt": 47,
+      "spark_deep_20260713_134928_02_deep_obsidian_vault_passes_6b2f40bc.txt": 27,
+      "spark_deep_20260713_140440_03_deep_karpathy_autoresearch_passes_a8af6e1c.txt": 44,
+      "spark_deep_20260713_143448_03_deep_karpathy_autoresearch_passes_b5dce0f2.txt": 34,
+      "spark_deep_20260713_145513_03_deep_karpathy_autoresearch_passes_c0ff8f70.txt": 35,
+      "spark_deep_20260713_150428_03_deep_karpathy_autoresearch_passes_a7c78afd.txt": 19,
+      "spark_deep_20260713_152141_04_deep_verification_plane_sota_passes_29ce2a3b.txt": 30,
+      "spark_deep_20260714_002227_deep_action_20260713_191923_2026-07-13-the-illusion-_passes_58f7b051.txt": 27,
+      "spark_deep_20260714_134131_deep_action_20260714_080159_2026-07-14-zhayujie-cowa_passes_0b051e38.txt": 38,
+      "spark_deep_20260715_120911_deep_orch_20260715_013124_20260714-sandbaseaimanaged-a_passes_6ff1b9c2.txt": 38,
+      "spark_deep_20260715_124105_deep_orch_20260715_013127_20260714-lyellr88marm-memory_passes_e0a37758.txt": 32,
+      "spark_deep_20260718_020153_deep_orch_20260717_205811_20260714-lyellr88marm-memory_passes_e8e31b1a.txt": 48,
+      "spark_deep_20260718_020747_deep_orch_20260715_013127_20260714-thclawsthclaws-aeb3_passes_0120a541.txt": 34,
+      "spark_deep_batch_node2_20260713_033649_09f6e047.txt": 35,
+      "spark_spark_20260713_014012_smoke_night_21f201f5.txt": 48,
+      "spark_spark_20260713_014507_eval_hermes_agent_for_kit_87456875.txt": 34,
+      "spark_spark_20260713_014714_01_deep_hermes_agent_5425a785.txt": 27,
+      "spark_spark_20260713_014747_02_deep_obsidian_vault_9979aff0.txt": 25,
+      "spark_spark_20260713_025713_03_deep_karpathy_autoresearch_ea991d7d.txt": 26,
+      "spark_spark_20260713_033349_01_deep_hermes_agent_9cde465e.txt": 37,
+      "spark_spark_20260713_033428_02_deep_obsidian_vault_6308fea9.txt": 41,
+      "spark_spark_20260713_033505_03_deep_karpathy_autoresearch_569eec26.txt": 28,
+      "spark_spark_20260713_033537_04_deep_verification_plane_sota_0417c35b.txt": 23,
+      "spark_spark_20260713_033610_05_deep_dgx_spark_idle_utilization_c12a9440.txt": 39,
+      "spark_spark_20260713_034807_01_deep_hermes_agent_8f46de91.txt": 46,
+      "spark_spark_20260713_134928_02_deep_obsidian_vault_4c7c90b5.txt": 26,
+      "spark_spark_20260713_140440_03_deep_karpathy_autoresearch_c20a0e1f.txt": 33,
+      "spark_spark_20260713_140440_03_deep_karpathy_autoresearch_cleaned_fbaba61b.txt": 24,
+      "spark_spark_20260713_143448_03_deep_karpathy_autoresearch_d4ac535c.txt": 41,
+      "spark_spark_20260713_145513_03_deep_karpathy_autoresearch_15d6927b.txt": 28,
+      "spark_spark_20260713_150428_03_deep_karpathy_autoresearch_b4201dee.txt": 41,
+      "spark_spark_20260713_150428_03_deep_karpathy_autoresearch_ready_2a373076.txt": 20,
+      "spark_spark_20260713_152141_04_deep_verification_plane_sota_ready_ccbace81.txt": 25,
+      "spark_spark_20260714_002227_deep_action_20260713_191923_2026-07-13-the-illusion-_405406dd.txt": 22,
+      "spark_spark_20260715_120911_deep_orch_20260715_013124_20260714-sandbaseaimanaged-a_4562de1a.txt": 37,
+      "spark_spark_20260715_124105_deep_orch_20260715_013127_20260714-lyellr88marm-memory_2f0efa4d.txt": 25,
+      "spark_spark_20260718_020153_deep_orch_20260717_205811_20260714-lyellr88marm-memory_4978cf98.txt": 28,
+      "spark_spark_20260718_020747_deep_orch_20260715_013127_20260714-thclawsthclaws-aeb3_c24243ba.txt": 36
+    },
+    "by_category": {
+      "claim_verification": 500,
+      "data_extraction": 500,
+      "reasoning_numeric": 500,
+      "summarization": 500
+    },
+    "by_ground_truth": {
+      "clean": 1000,
+      "confabulated": 1000
+    },
+    "by_failure_type": {
+      "date_shift": 92,
+      "entity_swap": 5,
+      "fabricated_detail": 77,
+      "negation_flip": 60,
+      "number_perturb": 741,
+      "unsupported_generalization": 25
+    }
+  },
+  "judges": {
+    "ensemble_and": {
+      "n": 1998,
+      "tp": 700,
+      "fn": 300,
+      "fp": 94,
+      "tn": 904,
+      "accuracy": 0.8028028028028028,
+      "recall": 0.7,
+      "fpr": 0.09418837675350701,
+      "fnr": 0.3,
+      "precision_at_prevalence": {
+        "0.03": 0.18689471900693788,
+        "0.05": 0.2811720196409885,
+        "0.08": 0.3925601258709822,
+        "0.5": 0.8814029775422659
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 140,
+          "total": 250,
+          "recall": 0.56
+        },
+        "data_extraction": {
+          "hit": 182,
+          "total": 250,
+          "recall": 0.728
+        },
+        "reasoning_numeric": {
+          "hit": 228,
+          "total": 250,
+          "recall": 0.912
+        },
+        "summarization": {
+          "hit": 150,
+          "total": 250,
+          "recall": 0.6
+        }
+      },
+      "recall_by_failure_type": {
+        "fabricated_detail": {
+          "hit": 70,
+          "total": 77,
+          "recall": 0.9090909090909091
+        },
+        "negation_flip": {
+          "hit": 47,
+          "total": 60,
+          "recall": 0.7833333333333333
+        },
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 25,
+          "recall": 0.76
+        },
+        "number_perturb": {
+          "hit": 516,
+          "total": 741,
+          "recall": 0.6963562753036437
+        },
+        "entity_swap": {
+          "hit": 3,
+          "total": 5,
+          "recall": 0.6
+        },
+        "date_shift": {
+          "hit": 45,
+          "total": 92,
+          "recall": 0.4891304347826087
+        }
+      },
+      "ece": 0.33161209068010067,
+      "n_with_confidence": 794,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "ensemble_or": {
+      "n": 2000,
+      "tp": 924,
+      "fn": 76,
+      "fp": 351,
+      "tn": 649,
+      "accuracy": 0.7865,
+      "recall": 0.924,
+      "fpr": 0.351,
+      "fnr": 0.076,
+      "precision_at_prevalence": {
+        "0.03": 0.07528721583964801,
+        "0.05": 0.12169103121295932,
+        "0.08": 0.1862715452071364,
+        "0.5": 0.7247058823529413
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 194,
+          "total": 250,
+          "recall": 0.776
+        },
+        "data_extraction": {
+          "hit": 246,
+          "total": 250,
+          "recall": 0.984
+        },
+        "reasoning_numeric": {
+          "hit": 239,
+          "total": 250,
+          "recall": 0.956
+        },
+        "summarization": {
+          "hit": 245,
+          "total": 250,
+          "recall": 0.98
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 25,
+          "total": 25,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 77,
+          "total": 77,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 5,
+          "total": 5,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 90,
+          "total": 92,
+          "recall": 0.9782608695652174
+        },
+        "negation_flip": {
+          "hit": 57,
+          "total": 60,
+          "recall": 0.95
+        },
+        "number_perturb": {
+          "hit": 670,
+          "total": 741,
+          "recall": 0.9041835357624831
+        }
+      },
+      "ece": 0.6747058823529412,
+      "n_with_confidence": 1275,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "hhem_gate": {
+      "n": 1984,
+      "tp": 619,
+      "fn": 375,
+      "fp": 470,
+      "tn": 520,
+      "accuracy": 0.5740927419354839,
+      "recall": 0.6227364185110664,
+      "fpr": 0.47474747474747475,
+      "fnr": 0.3772635814889336,
+      "precision_at_prevalence": {
+        "0.03": 0.038987048851137185,
+        "0.05": 0.0645795285813496,
+        "0.08": 0.10238447684190478,
+        "0.5": 0.5674219205733387
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 77,
+          "total": 250,
+          "recall": 0.308
+        },
+        "data_extraction": {
+          "hit": 248,
+          "total": 248,
+          "recall": 1.0
+        },
+        "reasoning_numeric": {
+          "hit": 248,
+          "total": 250,
+          "recall": 0.992
+        },
+        "summarization": {
+          "hit": 46,
+          "total": 246,
+          "recall": 0.18699186991869918
+        }
+      },
+      "recall_by_failure_type": {
+        "number_perturb": {
+          "hit": 558,
+          "total": 739,
+          "recall": 0.7550744248985115
+        },
+        "fabricated_detail": {
+          "hit": 38,
+          "total": 73,
+          "recall": 0.5205479452054794
+        },
+        "negation_flip": {
+          "hit": 12,
+          "total": 60,
+          "recall": 0.2
+        },
+        "entity_swap": {
+          "hit": 1,
+          "total": 5,
+          "recall": 0.2
+        },
+        "unsupported_generalization": {
+          "hit": 4,
+          "total": 25,
+          "recall": 0.16
+        },
+        "date_shift": {
+          "hit": 6,
+          "total": 92,
+          "recall": 0.06521739130434782
+        }
+      },
+      "ece": 0.2925907258064515,
+      "n_with_confidence": 1984,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "node2_critic": {
+      "n": 1998,
+      "tp": 715,
+      "fn": 285,
+      "fp": 184,
+      "tn": 814,
+      "accuracy": 0.7652652652652653,
+      "recall": 0.715,
+      "fpr": 0.1843687374749499,
+      "fnr": 0.285,
+      "precision_at_prevalence": {
+        "0.03": 0.107095955666974,
+        "0.05": 0.16951137527110846,
+        "0.08": 0.25218319391285604,
+        "0.5": 0.7950020611205811
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 148,
+          "total": 250,
+          "recall": 0.592
+        },
+        "data_extraction": {
+          "hit": 185,
+          "total": 250,
+          "recall": 0.74
+        },
+        "reasoning_numeric": {
+          "hit": 230,
+          "total": 250,
+          "recall": 0.92
+        },
+        "summarization": {
+          "hit": 152,
+          "total": 250,
+          "recall": 0.608
+        }
+      },
+      "recall_by_failure_type": {
+        "fabricated_detail": {
+          "hit": 70,
+          "total": 77,
+          "recall": 0.9090909090909091
+        },
+        "negation_flip": {
+          "hit": 47,
+          "total": 60,
+          "recall": 0.7833333333333333
+        },
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 25,
+          "recall": 0.76
+        },
+        "number_perturb": {
+          "hit": 530,
+          "total": 741,
+          "recall": 0.7152496626180836
+        },
+        "entity_swap": {
+          "hit": 3,
+          "total": 5,
+          "recall": 0.6
+        },
+        "date_shift": {
+          "hit": 46,
+          "total": 92,
+          "recall": 0.5
+        }
+      },
+      "ece": null,
+      "n_with_confidence": 0,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "numeric_gate": {
+      "n": 2000,
+      "tp": 530,
+      "fn": 470,
+      "fp": 4,
+      "tn": 996,
+      "accuracy": 0.763,
+      "recall": 0.53,
+      "fpr": 0.004,
+      "fnr": 0.47,
+      "precision_at_prevalence": {
+        "0.03": 0.8038422649140546,
+        "0.05": 0.8745874587458745,
+        "0.08": 0.9201388888888888,
+        "0.5": 0.9925093632958801
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 97,
+          "total": 250,
+          "recall": 0.388
+        },
+        "data_extraction": {
+          "hit": 129,
+          "total": 250,
+          "recall": 0.516
+        },
+        "reasoning_numeric": {
+          "hit": 210,
+          "total": 250,
+          "recall": 0.84
+        },
+        "summarization": {
+          "hit": 94,
+          "total": 250,
+          "recall": 0.376
+        }
+      },
+      "recall_by_failure_type": {
+        "number_perturb": {
+          "hit": 462,
+          "total": 741,
+          "recall": 0.6234817813765182
+        },
+        "date_shift": {
+          "hit": 44,
+          "total": 92,
+          "recall": 0.4782608695652174
+        },
+        "fabricated_detail": {
+          "hit": 24,
+          "total": 77,
+          "recall": 0.3116883116883117
+        },
+        "unsupported_generalization": {
+          "hit": 0,
+          "total": 25,
+          "recall": 0.0
+        },
+        "negation_flip": {
+          "hit": 0,
+          "total": 60,
+          "recall": 0.0
+        },
+        "entity_swap": {
+          "hit": 0,
+          "total": 5,
+          "recall": 0.0
+        }
+      },
+      "ece": 0.26309999999999995,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": true,
+        "precision_at_5pct": true
+      }
+    },
+    "precision_stack": {
+      "n": 2000,
+      "tp": 815,
+      "fn": 185,
+      "fp": 96,
+      "tn": 904,
+      "accuracy": 0.8595,
+      "recall": 0.815,
+      "fpr": 0.096,
+      "fnr": 0.185,
+      "precision_at_prevalence": {
+        "0.03": 0.20796121459556008,
+        "0.05": 0.3088291019325502,
+        "0.08": 0.4247003647733194,
+        "0.5": 0.8946212952799122
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 183,
+          "total": 250,
+          "recall": 0.732
+        },
+        "data_extraction": {
+          "hit": 206,
+          "total": 250,
+          "recall": 0.824
+        },
+        "reasoning_numeric": {
+          "hit": 238,
+          "total": 250,
+          "recall": 0.952
+        },
+        "summarization": {
+          "hit": 188,
+          "total": 250,
+          "recall": 0.752
+        }
+      },
+      "recall_by_failure_type": {
+        "fabricated_detail": {
+          "hit": 71,
+          "total": 77,
+          "recall": 0.922077922077922
+        },
+        "number_perturb": {
+          "hit": 611,
+          "total": 741,
+          "recall": 0.8245614035087719
+        },
+        "negation_flip": {
+          "hit": 47,
+          "total": 60,
+          "recall": 0.7833333333333333
+        },
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 25,
+          "recall": 0.76
+        },
+        "date_shift": {
+          "hit": 64,
+          "total": 92,
+          "recall": 0.6956521739130435
+        },
+        "entity_swap": {
+          "hit": 3,
+          "total": 5,
+          "recall": 0.6
+        }
+      },
+      "ece": 0.16659999999999994,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "secondary_judge": {
+      "n": 2000,
+      "tp": 909,
+      "fn": 91,
+      "fp": 261,
+      "tn": 739,
+      "accuracy": 0.824,
+      "recall": 0.909,
+      "fpr": 0.261,
+      "fnr": 0.091,
+      "precision_at_prevalence": {
+        "0.03": 0.09724005134788188,
+        "0.05": 0.15490797546012272,
+        "0.08": 0.2324510932105869,
+        "0.5": 0.776923076923077
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 186,
+          "total": 250,
+          "recall": 0.744
+        },
+        "data_extraction": {
+          "hit": 243,
+          "total": 250,
+          "recall": 0.972
+        },
+        "reasoning_numeric": {
+          "hit": 237,
+          "total": 250,
+          "recall": 0.948
+        },
+        "summarization": {
+          "hit": 243,
+          "total": 250,
+          "recall": 0.972
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 25,
+          "total": 25,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 77,
+          "total": 77,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 5,
+          "total": 5,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 89,
+          "total": 92,
+          "recall": 0.967391304347826
+        },
+        "negation_flip": {
+          "hit": 57,
+          "total": 60,
+          "recall": 0.95
+        },
+        "number_perturb": {
+          "hit": 656,
+          "total": 741,
+          "recall": 0.8852901484480432
+        }
+      },
+      "ece": null,
+      "n_with_confidence": 0,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "ship_stack": {
+      "n": 2000,
+      "tp": 949,
+      "fn": 51,
+      "fp": 351,
+      "tn": 649,
+      "accuracy": 0.799,
+      "recall": 0.949,
+      "fpr": 0.351,
+      "fnr": 0.051,
+      "precision_at_prevalence": {
+        "0.03": 0.07716701902748414,
+        "0.05": 0.12457337883959045,
+        "0.08": 0.19035202086049546,
+        "0.5": 0.7300000000000001
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 214,
+          "total": 250,
+          "recall": 0.856
+        },
+        "data_extraction": {
+          "hit": 246,
+          "total": 250,
+          "recall": 0.984
+        },
+        "reasoning_numeric": {
+          "hit": 240,
+          "total": 250,
+          "recall": 0.96
+        },
+        "summarization": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 25,
+          "total": 25,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 92,
+          "total": 92,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 77,
+          "total": 77,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 5,
+          "total": 5,
+          "recall": 1.0
+        },
+        "negation_flip": {
+          "hit": 57,
+          "total": 60,
+          "recall": 0.95
+        },
+        "number_perturb": {
+          "hit": 693,
+          "total": 741,
+          "recall": 0.9352226720647774
+        }
+      },
+      "ece": 0.1509999999999999,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    }
+  }
+}

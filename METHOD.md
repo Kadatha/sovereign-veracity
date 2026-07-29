@@ -164,9 +164,12 @@ Export helper for this package: `sv-testgen/_export_benchmarks.py` (point at the
 | Generator | Prompt | Notable | Ship? |
 |-----------|--------|---------|:-----:|
 | 0.1.x era | Lynx SCORE prompts | pilot-01/02 Node2 stacks | historical |
+| 0.1.x→Spark | evolving | pilot-03…06 path (extractive, gated planes, Spark primary) | diagnostic |
 | **0.1.6** | **v5.3** | pilot-09 A bare + det_gates | **YES** |
 | **0.2.0** | **v5.4** | pilot-10 multi-voice + code_review | **YES** |
 | **0.2.1** (lab) | v5.4 family | code flip hygiene + gate HC (not re-score of pilot-10) | — |
+
+All exported runs under `runs/` are listed in `index.json` and the README timeline.
 
 ---
 

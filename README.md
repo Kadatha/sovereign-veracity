@@ -54,14 +54,26 @@ A **local, zero-cloud-API** evaluation package for faithfulness / confabulation 
 
 ---
 
-## Headline timeline
+## Full pilot timeline (all published under `runs/`)
 
 | Run | What | Ship? |
 |-----|------|:-----:|
-| [pilot-01](./runs/pilot-01/) | Early Node2 / secondary baselines | — |
+| [pilot-01](./runs/pilot-01/) | Early Node2 / secondary / HHEM baselines | — |
 | [pilot-02](./runs/pilot-02/) | Ensembles, numeric gate, precision vs ship stacks | — |
+| [pilot-02-smoke](./runs/pilot-02-smoke/) | Small smoke on pilot-02 stack | — |
+| [pilot-03](./runs/pilot-03/) | Multi-seed push; extractive lessons | — |
+| [pilot-03b](./runs/pilot-03b/) | Extractive gate slice | — |
+| [pilot-04-spark](./runs/pilot-04-spark/) | Spark primary enters stack | — |
+| [pilot-04d-summ](./runs/pilot-04d-summ/) | Summarization-focused slice | — |
+| [pilot-05](./runs/pilot-05/) | Gated planes + multi-judge full n | — |
+| [pilot-05b-prompt](./runs/pilot-05b-prompt/) | Prompt iteration | — |
+| [pilot-05c-v5-fn](./runs/pilot-05c-v5-fn/) | Spark v5 FN probe | — |
+| [pilot-06](./runs/pilot-06/) | Pre–floor-lock diagnostic (later burned for FPR claims) | — |
+| [p07-v51-smoke](./runs/p07-v51-smoke/) | Smoke only (not independent FPR sample) | — |
 | [pilot-09](./runs/pilot-09/) | Gen 0.1.6 + prompt v5.3, A bare + det_gates | **YES** |
 | [**pilot-10**](./runs/pilot-10/) | Gen **0.2.0** + prompt **v5.4**, multi-voice / code_review | **YES** |
+
+Machine index for all of the above: [`index.json`](./index.json).
 
 ### Pilot-10 component snapshot (n=2000 confab / 2000 clean)
 

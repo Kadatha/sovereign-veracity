@@ -1,0 +1,983 @@
+{
+  "exported_at": "2026-07-29T00:21:29.239065+00:00",
+  "ship_targets": {
+    "recall_min": 0.95,
+    "fpr_max": 0.012,
+    "precision_at_5pct_min": 0.8,
+    "ece_max": 0.1
+  },
+  "meta": {
+    "run_id": "pilot-06",
+    "n_results": 21985,
+    "n_errors": 0,
+    "judges": [
+      "ensemble_and",
+      "ensemble_or",
+      "extractive_gate",
+      "gated_precision",
+      "gated_ship",
+      "hhem_gate",
+      "node2_lynx",
+      "numeric_gate",
+      "precision_stack",
+      "ship_stack",
+      "spark_veracity"
+    ],
+    "judge_versions": {
+      "ensemble_and": "ensemble|and|c597ba75249c",
+      "ensemble_or": "ensemble|or|1e526952d556",
+      "extractive_gate": "extractive|v4",
+      "gated_precision": "ensemble|extractive_gated_precision|45519366785c",
+      "gated_ship": "ensemble|extractive_gated_ship|dfab96c20b62",
+      "hhem_gate": "hhem@http://192.168.1.138:8080/check|threshold:0.5|mode:pairs",
+      "node2_lynx": "patronus-lynx:latest|prompt:cebdb630ab88|api:chat|think:False",
+      "numeric_gate": "numeric|v4|arith:True|slot:True|rtol:0.0001|atol:0.0001",
+      "precision_stack": "ensemble|precision_stack|b04a8039671c",
+      "ship_stack": "ensemble|ship_stack|4887d5e9194b",
+      "spark_veracity": "nvidia/Qwen3.6-27B-NVFP4|prompt:cebdb630ab88|openai|think:False"
+    }
+  },
+  "corpus": {
+    "n_cases": 2000,
+    "by_seed_source": {
+      "example_steel_brief.txt": 37,
+      "feather_brief_data-center-builds-are-driving-steel-dem_2026-07-12_ca5672fe.txt": 31,
+      "feather_brief_steel-demand-and-physical-market_2026-07-13_7817ee5a.txt": 43,
+      "feather_dossier_data-center-builds-are-driving-steel-dem_2026-07-12_620216c2.txt": 46,
+      "feather_dossier_evidence-review-nue-stld-cmc-etn-pwr-vrt_2026-07-12_e9e40a7f.txt": 45,
+      "feather_dossier_steel-companies-exposed-to-data-center-c_2026-07-12_b9d0f04f.txt": 35,
+      "feather_dossier_steel-demand-and-physical-market_2026-07-13_3161ccdd.txt": 31,
+      "pulse_pulse_2026-07-13_9fbffe2f.txt": 40,
+      "spark_2026-07-13_quant_illusion_equiv_ready_459f9013.txt": 27,
+      "spark_critic_critic_20260714_002305_deep_action_20260713_191923_2026-07-13-t_16411106.txt": 37,
+      "spark_critic_critic_20260714_134214_deep_action_20260714_080159_2026-07-14-z_c8cf8294.txt": 34,
+      "spark_critic_critic_20260715_120953_deep_orch_20260715_013124_20260714-sandb_2011bebc.txt": 29,
+      "spark_critic_critic_20260715_124155_deep_orch_20260715_013127_20260714-lyell_62b193eb.txt": 45,
+      "spark_critic_critic_20260718_020303_deep_orch_20260717_205811_20260714-lyell_83e1df85.txt": 32,
+      "spark_critic_critic_20260718_020842_deep_orch_20260715_013127_20260714-thcla_02d75477.txt": 18,
+      "spark_critic_critic_spark_20260713_034807_01_deep_hermes_agent_b5c1dcde.txt": 17,
+      "spark_critic_critic_spark_20260713_134928_02_deep_obsidian_vault_b67fbd6a.txt": 23,
+      "spark_critic_critic_spark_20260713_140440_03_deep_karpathy_autoresearch_d9450b30.txt": 37,
+      "spark_critic_critic_spark_20260713_143448_03_deep_karpathy_autoresearch_fe0cdf62.txt": 32,
+      "spark_critic_critic_spark_20260713_145513_03_deep_karpathy_autoresearch_1aa2efe8.txt": 44,
+      "spark_critic_critic_spark_20260713_150428_03_deep_karpathy_autoresearch_1570584d.txt": 36,
+      "spark_critic_critic_spark_20260713_152141_04_deep_verification_plane_sota_92afe5ac.txt": 33,
+      "spark_deep_20260713_034807_01_deep_hermes_agent_passes_edcdff1f.txt": 47,
+      "spark_deep_20260713_134928_02_deep_obsidian_vault_passes_6b2f40bc.txt": 27,
+      "spark_deep_20260713_140440_03_deep_karpathy_autoresearch_passes_a8af6e1c.txt": 44,
+      "spark_deep_20260713_143448_03_deep_karpathy_autoresearch_passes_b5dce0f2.txt": 34,
+      "spark_deep_20260713_145513_03_deep_karpathy_autoresearch_passes_c0ff8f70.txt": 35,
+      "spark_deep_20260713_150428_03_deep_karpathy_autoresearch_passes_a7c78afd.txt": 19,
+      "spark_deep_20260713_152141_04_deep_verification_plane_sota_passes_29ce2a3b.txt": 30,
+      "spark_deep_20260714_002227_deep_action_20260713_191923_2026-07-13-the-illusion-_passes_58f7b051.txt": 27,
+      "spark_deep_20260714_134131_deep_action_20260714_080159_2026-07-14-zhayujie-cowa_passes_0b051e38.txt": 38,
+      "spark_deep_20260715_120911_deep_orch_20260715_013124_20260714-sandbaseaimanaged-a_passes_6ff1b9c2.txt": 38,
+      "spark_deep_20260715_124105_deep_orch_20260715_013127_20260714-lyellr88marm-memory_passes_e0a37758.txt": 32,
+      "spark_deep_20260718_020153_deep_orch_20260717_205811_20260714-lyellr88marm-memory_passes_e8e31b1a.txt": 48,
+      "spark_deep_20260718_020747_deep_orch_20260715_013127_20260714-thclawsthclaws-aeb3_passes_0120a541.txt": 34,
+      "spark_deep_batch_node2_20260713_033649_09f6e047.txt": 35,
+      "spark_spark_20260713_014012_smoke_night_21f201f5.txt": 49,
+      "spark_spark_20260713_014507_eval_hermes_agent_for_kit_87456875.txt": 34,
+      "spark_spark_20260713_014714_01_deep_hermes_agent_5425a785.txt": 27,
+      "spark_spark_20260713_014747_02_deep_obsidian_vault_9979aff0.txt": 25,
+      "spark_spark_20260713_025713_03_deep_karpathy_autoresearch_ea991d7d.txt": 26,
+      "spark_spark_20260713_033349_01_deep_hermes_agent_9cde465e.txt": 37,
+      "spark_spark_20260713_033428_02_deep_obsidian_vault_6308fea9.txt": 41,
+      "spark_spark_20260713_033505_03_deep_karpathy_autoresearch_569eec26.txt": 28,
+      "spark_spark_20260713_033537_04_deep_verification_plane_sota_0417c35b.txt": 21,
+      "spark_spark_20260713_033610_05_deep_dgx_spark_idle_utilization_c12a9440.txt": 39,
+      "spark_spark_20260713_034807_01_deep_hermes_agent_8f46de91.txt": 46,
+      "spark_spark_20260713_134928_02_deep_obsidian_vault_4c7c90b5.txt": 26,
+      "spark_spark_20260713_140440_03_deep_karpathy_autoresearch_c20a0e1f.txt": 34,
+      "spark_spark_20260713_140440_03_deep_karpathy_autoresearch_cleaned_fbaba61b.txt": 24,
+      "spark_spark_20260713_143448_03_deep_karpathy_autoresearch_d4ac535c.txt": 41,
+      "spark_spark_20260713_145513_03_deep_karpathy_autoresearch_15d6927b.txt": 28,
+      "spark_spark_20260713_150428_03_deep_karpathy_autoresearch_b4201dee.txt": 41,
+      "spark_spark_20260713_150428_03_deep_karpathy_autoresearch_ready_2a373076.txt": 20,
+      "spark_spark_20260713_152141_04_deep_verification_plane_sota_ready_ccbace81.txt": 25,
+      "spark_spark_20260714_002227_deep_action_20260713_191923_2026-07-13-the-illusion-_405406dd.txt": 23,
+      "spark_spark_20260715_120911_deep_orch_20260715_013124_20260714-sandbaseaimanaged-a_4562de1a.txt": 36,
+      "spark_spark_20260715_124105_deep_orch_20260715_013127_20260714-lyellr88marm-memory_2f0efa4d.txt": 25,
+      "spark_spark_20260718_020153_deep_orch_20260717_205811_20260714-lyellr88marm-memory_4978cf98.txt": 28,
+      "spark_spark_20260718_020747_deep_orch_20260715_013127_20260714-thclawsthclaws-aeb3_c24243ba.txt": 36
+    },
+    "by_category": {
+      "claim_verification": 500,
+      "data_extraction": 500,
+      "reasoning_numeric": 500,
+      "summarization": 500
+    },
+    "by_ground_truth": {
+      "clean": 1000,
+      "confabulated": 1000
+    },
+    "by_failure_type": {
+      "date_shift": 65,
+      "entity_swap": 8,
+      "fabricated_detail": 113,
+      "negation_flip": 59,
+      "number_perturb": 736,
+      "unsupported_generalization": 19
+    }
+  },
+  "judges": {
+    "ensemble_and": {
+      "n": 2000,
+      "tp": 767,
+      "fn": 233,
+      "fp": 67,
+      "tn": 933,
+      "accuracy": 0.85,
+      "recall": 0.767,
+      "fpr": 0.067,
+      "fnr": 0.233,
+      "precision_at_prevalence": {
+        "0.03": 0.26147727272727267,
+        "0.05": 0.37598039215686274,
+        "0.08": 0.49886178861788616,
+        "0.5": 0.9196642685851318
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 163,
+          "total": 250,
+          "recall": 0.652
+        },
+        "data_extraction": {
+          "hit": 206,
+          "total": 250,
+          "recall": 0.824
+        },
+        "reasoning_numeric": {
+          "hit": 208,
+          "total": 250,
+          "recall": 0.832
+        },
+        "summarization": {
+          "hit": 190,
+          "total": 250,
+          "recall": 0.76
+        }
+      },
+      "recall_by_failure_type": {
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 107,
+          "total": 113,
+          "recall": 0.9469026548672567
+        },
+        "date_shift": {
+          "hit": 55,
+          "total": 65,
+          "recall": 0.8461538461538461
+        },
+        "negation_flip": {
+          "hit": 46,
+          "total": 59,
+          "recall": 0.7796610169491526
+        },
+        "number_perturb": {
+          "hit": 541,
+          "total": 736,
+          "recall": 0.7350543478260869
+        },
+        "unsupported_generalization": {
+          "hit": 10,
+          "total": 19,
+          "recall": 0.5263157894736842
+        }
+      },
+      "ece": 0.3696642685851319,
+      "n_with_confidence": 834,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "ensemble_or": {
+      "n": 2000,
+      "tp": 937,
+      "fn": 63,
+      "fp": 349,
+      "tn": 651,
+      "accuracy": 0.794,
+      "recall": 0.937,
+      "fpr": 0.349,
+      "fnr": 0.063,
+      "precision_at_prevalence": {
+        "0.03": 0.07666921230634956,
+        "0.05": 0.12381078224101481,
+        "0.08": 0.18927381072618932,
+        "0.5": 0.7286158631415242
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 208,
+          "total": 250,
+          "recall": 0.832
+        },
+        "data_extraction": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "reasoning_numeric": {
+          "hit": 244,
+          "total": 250,
+          "recall": 0.976
+        },
+        "summarization": {
+          "hit": 236,
+          "total": 250,
+          "recall": 0.944
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 19,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 113,
+          "total": 113,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 64,
+          "total": 65,
+          "recall": 0.9846153846153847
+        },
+        "negation_flip": {
+          "hit": 56,
+          "total": 59,
+          "recall": 0.9491525423728814
+        },
+        "number_perturb": {
+          "hit": 677,
+          "total": 736,
+          "recall": 0.9198369565217391
+        }
+      },
+      "ece": 0.6786158631415241,
+      "n_with_confidence": 1286,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "extractive_gate": {
+      "n": 2000,
+      "tp": 0,
+      "fn": 1000,
+      "fp": 0,
+      "tn": 1000,
+      "accuracy": 0.5,
+      "recall": 0.0,
+      "fpr": 0.0,
+      "fnr": 1.0,
+      "precision_at_prevalence": {
+        "0.03": null,
+        "0.05": null,
+        "0.08": null,
+        "0.5": null
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 0,
+          "total": 250,
+          "recall": 0.0
+        },
+        "data_extraction": {
+          "hit": 0,
+          "total": 250,
+          "recall": 0.0
+        },
+        "reasoning_numeric": {
+          "hit": 0,
+          "total": 250,
+          "recall": 0.0
+        },
+        "summarization": {
+          "hit": 0,
+          "total": 250,
+          "recall": 0.0
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 0,
+          "total": 19,
+          "recall": 0.0
+        },
+        "number_perturb": {
+          "hit": 0,
+          "total": 736,
+          "recall": 0.0
+        },
+        "fabricated_detail": {
+          "hit": 0,
+          "total": 113,
+          "recall": 0.0
+        },
+        "date_shift": {
+          "hit": 0,
+          "total": 65,
+          "recall": 0.0
+        },
+        "negation_flip": {
+          "hit": 0,
+          "total": 59,
+          "recall": 0.0
+        },
+        "entity_swap": {
+          "hit": 0,
+          "total": 8,
+          "recall": 0.0
+        }
+      },
+      "ece": 0.04410000000000003,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "gated_precision": {
+      "n": 2000,
+      "tp": 906,
+      "fn": 94,
+      "fp": 5,
+      "tn": 995,
+      "accuracy": 0.9505,
+      "recall": 0.906,
+      "fpr": 0.005,
+      "fnr": 0.094,
+      "precision_at_prevalence": {
+        "0.03": 0.848579456759288,
+        "0.05": 0.9050949050949052,
+        "0.08": 0.9403217436429683,
+        "0.5": 0.9945115257958288
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 197,
+          "total": 250,
+          "recall": 0.788
+        },
+        "data_extraction": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "reasoning_numeric": {
+          "hit": 248,
+          "total": 250,
+          "recall": 0.992
+        },
+        "summarization": {
+          "hit": 212,
+          "total": 250,
+          "recall": 0.848
+        }
+      },
+      "recall_by_failure_type": {
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 107,
+          "total": 113,
+          "recall": 0.9469026548672567
+        },
+        "date_shift": {
+          "hit": 61,
+          "total": 65,
+          "recall": 0.9384615384615385
+        },
+        "number_perturb": {
+          "hit": 674,
+          "total": 736,
+          "recall": 0.9157608695652174
+        },
+        "negation_flip": {
+          "hit": 46,
+          "total": 59,
+          "recall": 0.7796610169491526
+        },
+        "unsupported_generalization": {
+          "hit": 10,
+          "total": 19,
+          "recall": 0.5263157894736842
+        }
+      },
+      "ece": 0.06114999999999992,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": true,
+        "precision_at_5pct": true
+      }
+    },
+    "gated_ship": {
+      "n": 2000,
+      "tp": 968,
+      "fn": 32,
+      "fp": 19,
+      "tn": 981,
+      "accuracy": 0.9745,
+      "recall": 0.968,
+      "fpr": 0.019,
+      "fnr": 0.032,
+      "precision_at_prevalence": {
+        "0.03": 0.6117547925005266,
+        "0.05": 0.7283671933784801,
+        "0.08": 0.8158449220396123,
+        "0.5": 0.9807497467071935
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 227,
+          "total": 250,
+          "recall": 0.908
+        },
+        "data_extraction": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "reasoning_numeric": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "summarization": {
+          "hit": 243,
+          "total": 250,
+          "recall": 0.972
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 19,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 113,
+          "total": 113,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 65,
+          "total": 65,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "number_perturb": {
+          "hit": 707,
+          "total": 736,
+          "recall": 0.9605978260869565
+        },
+        "negation_flip": {
+          "hit": 56,
+          "total": 59,
+          "recall": 0.9491525423728814
+        }
+      },
+      "ece": 0.06560000000000007,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": true,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "hhem_gate": {
+      "n": 1985,
+      "tp": 652,
+      "fn": 342,
+      "fp": 479,
+      "tn": 512,
+      "accuracy": 0.5863979848866498,
+      "recall": 0.6559356136820925,
+      "fpr": 0.48335015136226034,
+      "fnr": 0.3440643863179074,
+      "precision_at_prevalence": {
+        "0.03": 0.04028035216205402,
+        "0.05": 0.06666291119569862,
+        "0.08": 0.10554985713657958,
+        "0.5": 0.5757428327532528
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 92,
+          "total": 250,
+          "recall": 0.368
+        },
+        "data_extraction": {
+          "hit": 248,
+          "total": 248,
+          "recall": 1.0
+        },
+        "reasoning_numeric": {
+          "hit": 247,
+          "total": 250,
+          "recall": 0.988
+        },
+        "summarization": {
+          "hit": 65,
+          "total": 246,
+          "recall": 0.26422764227642276
+        }
+      },
+      "recall_by_failure_type": {
+        "number_perturb": {
+          "hit": 571,
+          "total": 733,
+          "recall": 0.7789904502046384
+        },
+        "fabricated_detail": {
+          "hit": 61,
+          "total": 111,
+          "recall": 0.5495495495495496
+        },
+        "entity_swap": {
+          "hit": 4,
+          "total": 8,
+          "recall": 0.5
+        },
+        "negation_flip": {
+          "hit": 11,
+          "total": 58,
+          "recall": 0.1896551724137931
+        },
+        "unsupported_generalization": {
+          "hit": 2,
+          "total": 19,
+          "recall": 0.10526315789473684
+        },
+        "date_shift": {
+          "hit": 3,
+          "total": 65,
+          "recall": 0.046153846153846156
+        }
+      },
+      "ece": 0.2857178841309823,
+      "n_with_confidence": 1985,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "node2_lynx": {
+      "n": 2000,
+      "tp": 821,
+      "fn": 179,
+      "fp": 340,
+      "tn": 660,
+      "accuracy": 0.7405,
+      "recall": 0.821,
+      "fpr": 0.34,
+      "fnr": 0.179,
+      "precision_at_prevalence": {
+        "0.03": 0.06949186016985018,
+        "0.05": 0.1127592363686307,
+        "0.08": 0.17353625026421474,
+        "0.5": 0.7071490094745908
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 179,
+          "total": 250,
+          "recall": 0.716
+        },
+        "data_extraction": {
+          "hit": 224,
+          "total": 250,
+          "recall": 0.896
+        },
+        "reasoning_numeric": {
+          "hit": 209,
+          "total": 250,
+          "recall": 0.836
+        },
+        "summarization": {
+          "hit": 209,
+          "total": 250,
+          "recall": 0.836
+        }
+      },
+      "recall_by_failure_type": {
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 107,
+          "total": 113,
+          "recall": 0.9469026548672567
+        },
+        "negation_flip": {
+          "hit": 51,
+          "total": 59,
+          "recall": 0.864406779661017
+        },
+        "date_shift": {
+          "hit": 56,
+          "total": 65,
+          "recall": 0.8615384615384616
+        },
+        "number_perturb": {
+          "hit": 589,
+          "total": 736,
+          "recall": 0.8002717391304348
+        },
+        "unsupported_generalization": {
+          "hit": 10,
+          "total": 19,
+          "recall": 0.5263157894736842
+        }
+      },
+      "ece": null,
+      "n_with_confidence": 0,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "numeric_gate": {
+      "n": 2000,
+      "tp": 660,
+      "fn": 340,
+      "fp": 0,
+      "tn": 1000,
+      "accuracy": 0.83,
+      "recall": 0.66,
+      "fpr": 0.0,
+      "fnr": 0.34,
+      "precision_at_prevalence": {
+        "0.03": 1.0,
+        "0.05": 1.0,
+        "0.08": 1.0,
+        "0.5": 1.0
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 109,
+          "total": 250,
+          "recall": 0.436
+        },
+        "data_extraction": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "reasoning_numeric": {
+          "hit": 233,
+          "total": 250,
+          "recall": 0.932
+        },
+        "summarization": {
+          "hit": 69,
+          "total": 250,
+          "recall": 0.276
+        }
+      },
+      "recall_by_failure_type": {
+        "number_perturb": {
+          "hit": 613,
+          "total": 736,
+          "recall": 0.8328804347826086
+        },
+        "date_shift": {
+          "hit": 31,
+          "total": 65,
+          "recall": 0.47692307692307695
+        },
+        "fabricated_detail": {
+          "hit": 16,
+          "total": 113,
+          "recall": 0.1415929203539823
+        },
+        "unsupported_generalization": {
+          "hit": 0,
+          "total": 19,
+          "recall": 0.0
+        },
+        "negation_flip": {
+          "hit": 0,
+          "total": 59,
+          "recall": 0.0
+        },
+        "entity_swap": {
+          "hit": 0,
+          "total": 8,
+          "recall": 0.0
+        }
+      },
+      "ece": 0.18164999999999992,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": true
+      }
+    },
+    "precision_stack": {
+      "n": 2000,
+      "tp": 906,
+      "fn": 94,
+      "fp": 67,
+      "tn": 933,
+      "accuracy": 0.9195,
+      "recall": 0.906,
+      "fpr": 0.067,
+      "fnr": 0.094,
+      "precision_at_prevalence": {
+        "0.03": 0.2948898774004557,
+        "0.05": 0.4157870582836164,
+        "0.08": 0.5404115717268118,
+        "0.5": 0.9311408016443987
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 197,
+          "total": 250,
+          "recall": 0.788
+        },
+        "data_extraction": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "reasoning_numeric": {
+          "hit": 248,
+          "total": 250,
+          "recall": 0.992
+        },
+        "summarization": {
+          "hit": 212,
+          "total": 250,
+          "recall": 0.848
+        }
+      },
+      "recall_by_failure_type": {
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 107,
+          "total": 113,
+          "recall": 0.9469026548672567
+        },
+        "date_shift": {
+          "hit": 61,
+          "total": 65,
+          "recall": 0.9384615384615385
+        },
+        "number_perturb": {
+          "hit": 674,
+          "total": 736,
+          "recall": 0.9157608695652174
+        },
+        "negation_flip": {
+          "hit": 46,
+          "total": 59,
+          "recall": 0.7796610169491526
+        },
+        "unsupported_generalization": {
+          "hit": 10,
+          "total": 19,
+          "recall": 0.5263157894736842
+        }
+      },
+      "ece": 0.09214999999999997,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "ship_stack": {
+      "n": 2000,
+      "tp": 969,
+      "fn": 31,
+      "fp": 349,
+      "tn": 651,
+      "accuracy": 0.81,
+      "recall": 0.969,
+      "fpr": 0.349,
+      "fnr": 0.031,
+      "precision_at_prevalence": {
+        "0.03": 0.07908052230685529,
+        "0.05": 0.12750000000000003,
+        "0.08": 0.1944806823883593,
+        "0.5": 0.7352048558421851
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 227,
+          "total": 250,
+          "recall": 0.908
+        },
+        "data_extraction": {
+          "hit": 250,
+          "total": 250,
+          "recall": 1.0
+        },
+        "reasoning_numeric": {
+          "hit": 249,
+          "total": 250,
+          "recall": 0.996
+        },
+        "summarization": {
+          "hit": 243,
+          "total": 250,
+          "recall": 0.972
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 19,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 113,
+          "total": 113,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 65,
+          "total": 65,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "number_perturb": {
+          "hit": 708,
+          "total": 736,
+          "recall": 0.9619565217391305
+        },
+        "negation_flip": {
+          "hit": 56,
+          "total": 59,
+          "recall": 0.9491525423728814
+        }
+      },
+      "ece": 0.1399999999999999,
+      "n_with_confidence": 2000,
+      "meets_ship": {
+        "recall": true,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    },
+    "spark_veracity": {
+      "n": 2000,
+      "tp": 883,
+      "fn": 117,
+      "fp": 76,
+      "tn": 924,
+      "accuracy": 0.9035,
+      "recall": 0.883,
+      "fpr": 0.076,
+      "fnr": 0.117,
+      "precision_at_prevalence": {
+        "0.03": 0.2643448757609021,
+        "0.05": 0.3794585302965191,
+        "0.08": 0.5025611838360843,
+        "0.5": 0.9207507820646508
+      },
+      "recall_by_category": {
+        "claim_verification": {
+          "hit": 192,
+          "total": 250,
+          "recall": 0.768
+        },
+        "data_extraction": {
+          "hit": 231,
+          "total": 250,
+          "recall": 0.924
+        },
+        "reasoning_numeric": {
+          "hit": 243,
+          "total": 250,
+          "recall": 0.972
+        },
+        "summarization": {
+          "hit": 217,
+          "total": 250,
+          "recall": 0.868
+        }
+      },
+      "recall_by_failure_type": {
+        "unsupported_generalization": {
+          "hit": 19,
+          "total": 19,
+          "recall": 1.0
+        },
+        "fabricated_detail": {
+          "hit": 113,
+          "total": 113,
+          "recall": 1.0
+        },
+        "entity_swap": {
+          "hit": 8,
+          "total": 8,
+          "recall": 1.0
+        },
+        "date_shift": {
+          "hit": 63,
+          "total": 65,
+          "recall": 0.9692307692307692
+        },
+        "negation_flip": {
+          "hit": 51,
+          "total": 59,
+          "recall": 0.864406779661017
+        },
+        "number_perturb": {
+          "hit": 629,
+          "total": 736,
+          "recall": 0.8546195652173914
+        }
+      },
+      "ece": null,
+      "n_with_confidence": 0,
+      "meets_ship": {
+        "recall": false,
+        "fpr": false,
+        "precision_at_5pct": false
+      }
+    }
+  }
+}

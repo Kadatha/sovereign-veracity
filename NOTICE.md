@@ -3,9 +3,11 @@
 ## Intended for public / open distribution
 
 - `README.md`, `AGENT_SYNOPSIS.md`, `METHOD.md`, `FINDINGS-PILOT-10.md`, this file  
-- `index.json` and `runs/*/METRICS.md` + `runs/*/metrics.json` for published pilots  
+- `index.json` and **all** `runs/*/METRICS.md` + `runs/*/metrics.json` (pilot-01 through pilot-10 path, including intermediate diagnostics)  
 - Method description, ship floors, ensemble definitions  
 - Failure-slice lessons and soft-spot honesty  
+
+**Headline ship claim** remains pilot-10 `gated_ship` only; intermediate runs are transparency, not alternate locks.
 
 ## Do not overclaim
 

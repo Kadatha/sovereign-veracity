@@ -129,6 +129,16 @@ Locked historically; pilot-10 is the current public headline (gen 0.2.0 / v5.4 /
 
 ---
 
+## Intermediate pilots (03 → 06)
+
+Full metrics for the path from Node2 ensembles to Spark + gated planes are published under [`runs/`](./runs/) and indexed in [`index.json`](./index.json):
+
+`pilot-03`, `pilot-03b`, `pilot-04-spark`, `pilot-04d-summ`, `pilot-05`, `pilot-05b-prompt`, `pilot-05c-v5-fn`, `pilot-06`, `p07-v51-smoke`.
+
+These are **diagnostic / iterative** runs. Some are burned for ship FPR claims (e.g. pilot-06 carve-out history). Prefer **pilot-09 / pilot-10** for product floors. Tables for every judge live in each run’s `METRICS.md`.
+
+---
+
 ## Historical: Pilot-01 / Pilot-02 (Node2 era)
 
 These remain published for method continuity. **Do not** treat pilot-02 `ship_stack` / `precision_stack` as the current product lock.
