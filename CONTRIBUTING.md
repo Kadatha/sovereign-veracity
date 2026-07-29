@@ -4,17 +4,19 @@ Thanks for helping improve **Sovereign Veracity** — open method, local-first c
 
 ## Before you start
 
-1. Read [`README.md`](./README.md) (results + **Why this matters**) and [`AGENT_SYNOPSIS.md`](./AGENT_SYNOPSIS.md) (tables, version stamps, reproduce block).
-2. Read [`METHOD.md`](./METHOD.md) and [`NOTICE.md`](./NOTICE.md) so we keep claims honest (single-seed pilots, no Node2-alone overclaim).
-3. Follow the [Code of Conduct](./.github/CODE_OF_CONDUCT.md).
+1. Read [`README.md`](./README.md) and **[`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md)** (current ship claim).
+2. Read [`AGENT_SYNOPSIS.md`](./AGENT_SYNOPSIS.md) (tables, version stamps) and [`METHOD.md`](./METHOD.md).
+3. Read [`NOTICE.md`](./NOTICE.md) — keep claims honest (cite the right pilot; no single-LLM overclaim; no GT rewrite).
+4. Follow the [Code of Conduct](./.github/CODE_OF_CONDUCT.md).
 
 ## High-value contributions
 
 | Area | Examples |
 |------|----------|
 | **Multi-seed corpora** | Public-domain or clearly licensed seeds; generator configs; diversity stats |
-| **Failure types** | New deterministic corruptions; multi-corruption cases; code_review category |
-| **Judges / stacks** | Adapters for other local models; better numeric gates; calibrated confidence |
+| **Failure types** | New deterministic corruptions; multi-corruption cases; code_review hygiene |
+| **Judges / stacks** | Adapters for other local models; better numeric/negation gates; calibrated confidence |
+| **Ship soft spots** | Autopsies that preserve frozen pilot scores while improving the next generator |
 | **Repro** | CI that runs a tiny smoke on mock judges; pinned model tags; export scripts |
 | **Docs** | Clearer agent instructions; non-English summaries; threat-model notes |
 

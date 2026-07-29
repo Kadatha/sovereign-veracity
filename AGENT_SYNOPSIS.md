@@ -1,55 +1,141 @@
 # Sovereign Veracity — Agent Synopsis
 
 **Audience:** local open-source coding agents, operators, researchers.  
-**Purpose:** single entrypoint for method, baselines, failure analysis, and ensemble policy.  
+**Purpose:** single entrypoint for method, baselines, failure analysis, and ship policy.  
 **Package root:** this directory (`benchmarks/sovereign-veracity/` or repo root if published standalone).
 
-Humans: start at [`README.md`](./README.md). Method depth: [`METHOD.md`](./METHOD.md).
+| Reader | Start |
+|--------|--------|
+| **Latest ship claim** | [`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md) |
+| **Humans** | [`README.md`](./README.md) |
+| **Method depth** | [`METHOD.md`](./METHOD.md) |
+| **Machine index** | [`index.json`](./index.json) |
 
 ---
 
 ## One-paragraph pitch
 
-Open method and pilot results for a **local-first veracity / faithfulness critic stack** (Node2-oriented). Pilot-01 is a single-seed baseline; pilot-02 is full **n=2000** with hardened prompts, a deterministic numeric gate, and ensemble policies. Prefer **`precision_stack`** for low-FPR gating and **`ship_stack`** for max recall when flags can be absorbed. Node2 alone is **not** claimed production-ready.
+Open method and pilot results for a **local-first veracity / faithfulness critic stack**. Early pilots (01–02) mapped Node2/Lynx ensembles. **Current ship claim is pilot-10:** Spark primary + deterministic numeric/date/negation gates + extractive-gated ship plane (`gated_ship`) on generator **0.2.0** / prompt **v5.4**, multi-seed corpus, **n=2000**, **SHIP YES** (rec **0.974** · FPR **0.002** · P@5% **0.962**). Do **not** cite pilot-02 `ship_stack` as the product lock.
 
-**Why open:** if intelligence is infrastructure, metered closed APIs at tens of dollars per million tokens while open/local stacks run at cents (or free on owned hardware) is an economic and security handicap—not a lifestyle choice. This repo is reproducible measurement for sovereign critics, not a cloud scoreboard. See **Why this matters** in [`README.md`](./README.md).
-
----
-
-## Stack map (Node2 lab)
-
-| Name | Type | Role |
-|------|------|------|
-| `node2_critic` | Ollama LLM — `patronus-lynx` (8B) | Primary critic under test |
-| `secondary_judge` | Ollama LLM — e.g. qwen3.5:35b | High-precision reference / veto |
-| `numeric_gate` | Deterministic | Every candidate number must be supported by source (± simple arithmetic) |
-| `hhem_gate` | HTTP HHEM | Groundedness score gate (`POST /check` pairs API) |
-| `ship_stack` | Ensemble | confab if **any** of Node2, secondary, numeric says confab |
-| `precision_stack` | Ensemble | confab if numeric says confab **or** (Node2 **and** secondary) |
-
-Ground truth: **machine-labeled at generation**. Clean = extractive assembly from seed. Confabulated = clean + one deterministic corruption (`corruptions.py` taxonomy).
-
-Harness code (lab layout): `sv-testgen/` (generator, evaluator, judges, report, schema).
+**Why open:** if intelligence is infrastructure, metered closed APIs at tens of dollars per million tokens while open/local stacks run at cents (or free on owned hardware) is an economic and security handicap. This repo is reproducible *measurement* for sovereign critics—not a cloud scoreboard.
 
 ---
 
-## Ship targets (pre-registered)
+## Ship targets (pre-registered, fail-closed)
 
 | Metric | Target | Notes |
 |--------|--------|-------|
 | Recall | ≥ 0.95 | Confabulations caught |
-| FPR | ≲ 0.012 | Clean wrongly flagged |
+| FPR | ≤ 0.012 | Clean wrongly flagged |
 | Precision @ 5% prevalence | ≥ 0.80 | Bayes-reweighted; not raw 50/50 corpus precision |
 | ECE | ≤ 0.10 | Calibration (where confidence exists) |
 
-Positive class = **confabulated**.
+Positive class = **confabulated**.  
+**Ship plane (current):** `gated_ship` = extractive force-clean path + (Spark ∨ numeric ∨ date ∨ negation).
 
 ---
 
-## Pilot-01 — baseline prompts
+## Current stack map (lab → pilot-10)
 
-**Status:** complete · **n=2000** · **0 judge errors**  
-**Caveat:** single seed document for the entire corpus (same brief as pilot-02).
+| Name | Type | Role |
+|------|------|------|
+| `spark_veracity` | OpenAI-compatible LLM (e.g. Qwen3.6-27B on lab Spark) | **Primary** critic |
+| `numeric_gate` | Deterministic | Numbers / arithmetic structure (v5) |
+| `date_gate` | Deterministic | Unsupported dates / year flips (v1) |
+| `negation_gate` | Deterministic | HC polarity / not-inject / op flip (v1 on pilot-10 freeze; v1.1+ in lab) |
+| `extractive_gate` | Deterministic | Verbatim / multi-sent extractive force-clean |
+| `ship_stack` | Ensemble | Spark ∨ det_gates (no extractive force-clean) |
+| `gated_ship` | Ensemble | **Official ship plane** |
+
+Ground truth: **machine-labeled at generation**. Clean = extractive (or policy-clean paraphrase) assembly from seed. Confabulated = clean + deterministic corruption(s).  
+Harness (lab layout): `sv-testgen/` — generator, evaluator, judges, report, schema.
+
+---
+
+## Pilot-10 — SHIP YES (headline)
+
+**Status:** complete · **n=2000** · **0 judge errors** · 14000 result rows  
+**Completed:** 2026-07-26  
+**Generator:** **0.2.0** (multi-voice meta, multi-corrupt, `code_review`)  
+**Prompt:** **v5.4** hash `0105f91470e7`  
+**Narrative:** [`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md)  
+**Artifacts:** [`runs/pilot-10/METRICS.md`](./runs/pilot-10/METRICS.md) · [`runs/pilot-10/metrics.json`](./runs/pilot-10/metrics.json)
+
+### Floors (`gated_ship`)
+
+| Metric | Floor | Result | |
+|--------|------:|-------:|---|
+| Recall | ≥ 0.95 | **0.974** | **PASS** |
+| FPR | ≤ 0.012 | **0.002** | **PASS** |
+| Prec@5% | ≥ 0.80 | **0.962** | **PASS** |
+
+**Ship decision: YES**
+
+### Component headline (pilot-10)
+
+| Judge | Acc | Recall | FPR | Prec@5% | All floors? |
+|-------|-----|--------|-----|---------|:-----------:|
+| **gated_ship** | 0.986 | **0.974** | **0.002** | **0.962** | **Y** |
+| ship_stack | 0.986 | 0.975 | 0.004 | 0.928 | Y* |
+| spark_veracity | 0.943 | 0.889 | 0.004 | 0.921 | N |
+| numeric_gate | 0.853 | 0.706 | 0.000 | 1.000 | N |
+| date_gate | 0.532 | 0.064 | 0.000 | 1.000 | N |
+| negation_gate | 0.538 | 0.076 | 0.000 | 1.000 | N |
+| extractive_gate | 0.500 | 0.000 | 0.000 | — | N |
+
+\*ship_stack also clears floors on this export; product lock remains **`gated_ship`**.
+
+### gated_ship recall by category
+
+| category | recall | hit/total |
+|----------|--------|-----------|
+| data_extraction | 1.000 | 200/200 |
+| reasoning_numeric | 1.000 | 200/200 |
+| claim_verification | 0.990 | 198/200 |
+| summarization | 0.980 | 196/200 |
+| **code_review** | **0.900** | **180/200** |
+
+### gated_ship recall by failure_type (selected)
+
+| failure_type | recall | hit/total |
+|--------------|--------|-----------|
+| date_shift | 1.000 | 54/54 |
+| entity_swap | 1.000 | 7/7 |
+| number_perturb | 0.995 | 580/583 |
+| fabricated_detail | 0.989 | 93/94 |
+| negation_flip | 0.977 | 43/44 |
+| off_by_one | 0.953 | 81/85 |
+| unsupported_generalization | 0.944 | 17/18 |
+| **condition_flip** | **0.861** | **99/115** |
+
+### Soft spot (documented)
+
+`code_review` owns **20 of 26** ship FNs. Diff autopsy: mostly near-copy **`not` injection**, **markdown `>` artifacts**, and a few **digit ±1** edits—not “can’t do code.” Lab follow-up (gen **0.2.1** hygiene + gate HC paths) addresses that class **without rewriting** pilot-10 scores. See FINDINGS.
+
+### FPR by clean_mode (`gated_ship`)
+
+| clean_mode | n | FPR |
+|------------|--:|----:|
+| extractive | 791 | 0.000 |
+| paraphrase | 209 | 0.0096 (2 FP) |
+
+---
+
+## Pilot-09 — prior SHIP YES
+
+**Status:** complete · gen **0.1.6** · prompt **v5.3** · same ship plane family  
+**Artifacts:** [`runs/pilot-09/`](./runs/pilot-09/)  
+Locked historically; pilot-10 is the current public headline (gen 0.2.0 / v5.4 / multi-voice+code_review).
+
+---
+
+## Historical: Pilot-01 / Pilot-02 (Node2 era)
+
+These remain published for method continuity. **Do not** treat pilot-02 `ship_stack` / `precision_stack` as the current product lock.
+
+### Pilot-01 — baseline prompts
+
+**n=2000** · **0 errors** · **single seed** caveat  
 
 | Judge | Acc | Recall | FPR | Prec@5% |
 |-------|-----|--------|-----|---------|
@@ -57,122 +143,47 @@ Positive class = **confabulated**.
 | secondary_judge (qwen3.5:35b) | 0.977 | 0.954 | 0.000 | 1.000 |
 | hhem_gate | 0.741 | 0.731 | 0.250 | 0.133 |
 
-### Node2 recall by failure type (pilot-01)
+**Artifacts:** [`runs/pilot-01/`](./runs/pilot-01/)
 
-| failure_type | recall | hit/total |
-|--------------|--------|-----------|
-| negation_flip | 1.000 | 121/121 |
-| entity_swap | 1.000 | 118/118 |
-| fabricated_detail | 1.000 | 58/58 |
-| number_perturb | 0.892 | 577/647 |
-| unsupported_generalization | **0.482** | 27/56 |
+### Pilot-02 — hardened prompt + numeric + ensembles
 
-### Node2 recall by category (pilot-01)
-
-| category | recall |
-|----------|--------|
-| claim_verification | 0.932 |
-| data_extraction | **0.780** |
-| reasoning_numeric | 0.940 |
-| summarization | 0.952 |
-
-**Artifacts:** [`runs/pilot-01/METRICS.md`](./runs/pilot-01/METRICS.md) · [`runs/pilot-01/metrics.json`](./runs/pilot-01/metrics.json)
-
----
-
-## Pilot-02 — hardened prompt v2 + numeric + ensembles
-
-**Status:** complete · **n=2000** · **0 judge errors** · 16000 result rows (components + ensembles)  
-**Prompt:** Lynx-aligned SCORE PASS/FAIL with explicit rules: omission OK; hedges material; numbers exact or correct arithmetic.  
-**Same single-seed corpus** as pilot-01 (reproducible comparison of prompt/stack, not seed diversity).
+**n=2000** · **0 errors** · same single-seed corpus as pilot-01  
 
 | Judge / stack | Acc | Recall | FPR | Prec@5% |
 |---------------|-----|--------|-----|---------|
 | node2_critic (v2) | 0.897 | 0.869 | 0.074 | 0.382 |
 | secondary_judge | 0.987 | 0.975 | 0.001 | 0.981 |
 | numeric_gate | 0.804 | 0.608 | 0.000 | 1.000 |
-| hhem_gate | 0.741 | 0.731 | 0.250 | 0.133 |
-| ensemble_or (N2 ∨ sec) | 0.957 | 0.989 | 0.075 | 0.410 |
-| ensemble_and (N2 ∧ sec) | 0.927 | 0.855 | 0.000 | 1.000 |
 | **ship_stack** | 0.957 | **0.989** | 0.075 | 0.410 |
 | **precision_stack** | **0.972** | 0.944 | **0.000** | **1.000** |
 
-### precision_stack vs ship_stack (decision table)
+**Artifacts:** [`runs/pilot-02/`](./runs/pilot-02/)
 
-| Metric | Target | ship_stack | precision_stack |
-|--------|--------|------------|-----------------|
-| Recall | ≥ 0.95 | **0.989** ✅ | 0.944 ❌ (−0.006) |
-| FPR | ≲ 0.012 | 0.075 ❌ | **0.000** ✅ |
-| Prec@5% | ≥ 0.80 | 0.410 ❌ | **1.000** ✅ |
-| Accuracy | — | 0.957 | **0.972** |
-
-| failure_type | ship_stack | precision_stack |
-|--------------|------------|-----------------|
-| negation_flip | 1.000 | 1.000 |
-| entity_swap | 1.000 | 1.000 |
-| fabricated_detail | 1.000 | 1.000 |
-| unsupported_generalization | **1.000** | 0.857 |
-| number_perturb | **0.983** | 0.926 |
-
-| category (confab recall) | ship_stack | precision_stack |
-|--------------------------|------------|-----------------|
-| claim_verification | 1.000 | 1.000 |
-| data_extraction | **0.956** | 0.812 |
-| reasoning_numeric | 1.000 | 1.000 |
-| summarization | 1.000 | 0.964 |
-
-**Recommendation for agents shipping a gate**
-
-1. Default product policy: **`precision_stack`** (near-zero FPR; strongest prec@5%).  
-2. If missing confabs is worse than extra flags: **`ship_stack`**.  
-3. Do **not** ship Node2 alone on these numbers.  
-4. Secondary alone is strong (recall 0.975, FPR 0.001) but heavier; ensembles encode the cheap numeric path.
-
-### Node2 alone: pilot-01 → pilot-02
-
-| | pilot-01 | pilot-02 v2 |
-|--|----------|-------------|
-| Recall | 0.901 | 0.869 |
-| FPR | 0.034 | 0.074 |
-| UG recall | 0.482 | **0.857** |
-| number_perturb | 0.892 | 0.811 |
-
-Hardening **fixed hedges** and made the model **stricter overall** (more FPs, fewer borderline numeric catches). Stacks recover product metrics better than chasing a perfect single 8B prompt.
-
-### unsupported_generalization (n=56)
-
-| Judge / stack | pilot-01 | pilot-02 |
-|---------------|----------|----------|
-| node2_critic | 0.482 | **0.857** |
-| secondary_judge | 0.446 | **1.000** |
-| ship_stack | — | **1.000** |
-| precision_stack | — | 0.857 |
-
-**Artifacts:** [`runs/pilot-02/METRICS.md`](./runs/pilot-02/METRICS.md) · [`runs/pilot-02/metrics.json`](./runs/pilot-02/metrics.json)
+**Lesson still valid:** single-LLM gates fail floors; ensembles + deterministic numeric path matter. Pilot-10 continues that architecture with Spark primary and more det gates.
 
 ---
 
-## Failure-slice lessons
+## Failure-slice lessons (across eras)
 
-1. **Modality blindness** — `may`/`might`/`could` → `will`, `some`/`most` → `all` looked “same claim.” Explicit prompt rules + secondary catch most; UG still the hard semantic class.
-2. **Small number edits** — 5–15% relative changes in multi-field extraction are easy for humans, hard for 8B critics. **`numeric_gate`** (0 FPR on this corpus) is the right tool.
-3. **Completeness ≠ faithfulness** — extractive claims that omit other source facts were false-positive FAIL under soft prompts. Pilot-02: omission allowed.
-4. **Derived arithmetic** — correct A−B is not “new invention” if both operands are in source. Prompt + numeric arithmetic allowlist.
-5. **Secondary ~0 FPR** — best high-precision veto for AND-style stacks; use OR only when recall is mandatory.
-6. **HHEM** — useful soft signal; not a solo critic here (FPR 0.25, weak UG).
-7. **Single-seed confound** — repeated may/will and 2.1→2.4 patterns inflate slice counts; multi-seed re-pilot before external SOTA claims.
+1. **Modality blindness** — hedge / quantifier upgrades need explicit policy + secondary/det paths.  
+2. **Small number edits** — bag-of-numbers alone is not enough; structure-aware arithmetic + near-extractive digit recovery matter.  
+3. **Completeness ≠ faithfulness** — omission is not confabulation by itself.  
+4. **Derived arithmetic** — correct A−B from source operands is clean under product policy.  
+5. **Multi-voice sources** — restating either voice can be clean; critic must not invent a preferred world model.  
+6. **Near-copy confabs** — tiny `not` / op / digit edits fool LLM-only critics; HC det recovery is required.  
+7. **Generator hygiene** — labeled “code” confabs must be real code edits, not markdown chevrons.  
+8. **Never rewrite a frozen pilot** — new stack → new `run_id` and fresh corpus when required.
 
 ---
 
 ## Method (short)
 
-See [`METHOD.md`](./METHOD.md) for full design.
+See [`METHOD.md`](./METHOD.md).
 
-- Categories: claim_verification, summarization, data_extraction, reasoning_numeric  
-- Corruptions: number_perturb, negation_flip, entity_swap, fabricated_detail, unsupported_generalization, date_shift  
-- Lynx I/O: JSON-ish `REASONING` + `SCORE` PASS/FAIL (parser tolerates unquoted SCORE)  
-- Eval: resumable SQLite runs; disagreement + agreement-audit queue for humans  
-- Ensembles: materialize after component judges (idempotent)
+- Categories: claim_verification, summarization, data_extraction, reasoning_numeric, **code_review** (v0.2+)  
+- Corruptions: number_perturb, negation_flip, entity_swap, fabricated_detail, unsupported_generalization, date_shift, **off_by_one**, **condition_flip**  
+- Multi-corrupt optional (~20% confabs, v0.2+)  
+- Eval: resumable SQLite; ensembles materialize after components  
 
 ---
 
@@ -180,10 +191,10 @@ See [`METHOD.md`](./METHOD.md) for full design.
 
 | Publish | Hold |
 |---------|------|
-| This synopsis, README, METHOD | “Node2 alone is production-ready” |
-| Pilot-01/02 tables + metrics.json | Raw `sv_corpus.db` with proprietary seeds |
-| Failure-slice lessons | Customer / Kit private seed text |
-| Ensemble definitions + recommendation | Overfit marketing as general SOTA |
+| This synopsis, README, METHOD, FINDINGS | “Single model alone is production-ready” without floors |
+| Pilot tables + metrics.json | Raw DBs with proprietary seeds |
+| Soft-spot honesty | Relabeling GT to flip SHIP NO → YES |
+| Ensemble definitions | Overfit marketing as universal SOTA |
 
 ---
 
@@ -191,43 +202,42 @@ See [`METHOD.md`](./METHOD.md) for full design.
 
 | Goal | Action |
 |------|--------|
-| Change critic prompt/model | New `run-id`; compare `node2_critic` to pilot-01/02 tables |
-| Ship a gate tomorrow | **`precision_stack`** |
-| Maximize catch rate | **`ship_stack`** + human/secondary triage |
-| Improve UG further | Multi-seed corpus + keep hedge rules; measure UG recall |
-| Improve numeric DE | Extend `numeric_gate`; don’t expect 8B alone |
-| Re-export this package | `python sv-testgen/_export_benchmarks.py` |
+| Cite current ship claim | **pilot-10 `gated_ship`** + FINDINGS |
+| Change prompt/model | New `run-id`; new corpus if gen changes; keep floors fixed |
+| Ship a gate tomorrow | **`gated_ship`** stack as measured |
+| Improve code_review | Gen hygiene + HC not/op/digit paths; measure on fresh pilot |
+| Improve numeric DE | Extend numeric gate; don’t expect LLM alone |
+| Re-export this package | `python sv-testgen/_export_benchmarks.py` (point DB at pilot DB) |
 
 ---
 
-## Reproduce
+## Reproduce (sketch)
 
 ```text
 cd sv-testgen
-python generator.py --target 2000 --db sv_corpus.db
-python evaluator.py --db sv_corpus.db --config config.json --run-id pilot-02
-python report.py --db sv_corpus.db --run-id pilot-02
-python _export_benchmarks.py
+python generator.py --target 2000 --db sv_corpus_v02.db --base-seed <N>
+python corpus_linter.py --db sv_corpus_v02.db
+python evaluator.py --db sv_corpus_v02.db --config config.pilot10.json --run-id pilot-10
+python report.py --db sv_corpus_v02.db --run-id pilot-10
+# export metrics into this package (see lab export helper)
 ```
 
-Example lab endpoints (replace for your LAN):
-
-- Ollama Node2: `patronus-lynx`  
-- HHEM: `POST /check` with `pairs: [{premise, hypothesis}]`  
-- Secondary: large local instruct model with `think: false` if Qwen3-style  
+Version stamps must be recorded: generator version, prompt hash, model id, config ship plane.
 
 ---
 
-## Version stamps
+## Version stamps (package)
 
 | Item | Value |
 |------|--------|
-| Generator | 0.1.0 |
-| Pilot-01 | baseline Lynx SCORE prompt |
-| Pilot-02 | hardened prompt hash prefix `93b994ed68cc` |
-| Corpus | 2000 cases, ~50/50 clean/confab, 4 categories |
-| Seed diversity | **1 file** (provisional for both pilots) |
-| Package export | post pilot-02 complete |
+| Headline pilot | **pilot-10** |
+| Ship decision | **YES** (`gated_ship`) |
+| Generator (measured) | **0.2.0** |
+| Prompt (measured) | **v5.4** / `0105f91470e7` |
+| Lab follow-up (not re-score) | gen **0.2.1** + negation v1.1 + numeric ±1 HC |
+| Prior ship | pilot-09 (gen 0.1.6 / v5.3) |
+| Historical Node2 pilots | pilot-01, pilot-02 |
+| Package export | post pilot-10 findings publish |
 
 ---
 
