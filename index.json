@@ -1,7 +1,13 @@
 {
   "title": "Sovereign Veracity \u2014 critic benchmarks",
-  "exported_at": "2026-07-19T04:49:47.580009+00:00",
-  "db": "sv_corpus.db",
+  "exported_at": "2026-07-29T00:22:36.617649+00:00",
+  "headline_run": "pilot-10",
+  "ship_targets": {
+    "recall_min": 0.95,
+    "fpr_max": 0.012,
+    "precision_at_5pct_min": 0.8,
+    "ece_max": 0.1
+  },
   "runs": {
     "pilot-01": {
       "n_results": 6000,
@@ -162,12 +168,207 @@
           "n": 15
         }
       }
+    },
+    "pilot-09": {
+      "n_results": 14000,
+      "n_errors": 0,
+      "judges": [
+        "date_gate",
+        "extractive_gate",
+        "gated_ship",
+        "negation_gate",
+        "numeric_gate",
+        "ship_stack",
+        "spark_veracity"
+      ],
+      "path": "runs/pilot-09/",
+      "headline": {
+        "date_gate": {
+          "recall": 0.072,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": true
+          }
+        },
+        "extractive_gate": {
+          "recall": 0.0,
+          "fpr": 0.0,
+          "precision_at_5pct": null,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": false
+          }
+        },
+        "gated_ship": {
+          "recall": 0.993,
+          "fpr": 0.001,
+          "precision_at_5pct": 0.9812252964426877,
+          "n": 2000,
+          "meets_ship": {
+            "recall": true,
+            "fpr": true,
+            "precision_at_5pct": true
+          }
+        },
+        "negation_gate": {
+          "recall": 0.051,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": true
+          }
+        },
+        "numeric_gate": {
+          "recall": 0.783,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": true
+          }
+        },
+        "ship_stack": {
+          "recall": 0.994,
+          "fpr": 0.002,
+          "precision_at_5pct": 0.9631782945736435,
+          "n": 2000,
+          "meets_ship": {
+            "recall": true,
+            "fpr": true,
+            "precision_at_5pct": true
+          }
+        },
+        "spark_veracity": {
+          "recall": 0.899,
+          "fpr": 0.002,
+          "precision_at_5pct": 0.9594450373532551,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": true,
+            "precision_at_5pct": true
+          }
+        }
+      }
+    },
+    "pilot-10": {
+      "n_results": 14000,
+      "n_errors": 0,
+      "judges": [
+        "date_gate",
+        "extractive_gate",
+        "gated_ship",
+        "negation_gate",
+        "numeric_gate",
+        "ship_stack",
+        "spark_veracity"
+      ],
+      "path": "runs/pilot-10/",
+      "headline": {
+        "date_gate": {
+          "recall": 0.064,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": true
+          }
+        },
+        "extractive_gate": {
+          "recall": 0.0,
+          "fpr": 0.0,
+          "precision_at_5pct": null,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": false
+          }
+        },
+        "gated_ship": {
+          "recall": 0.974,
+          "fpr": 0.002,
+          "precision_at_5pct": 0.9624505928853755,
+          "n": 2000,
+          "meets_ship": {
+            "recall": true,
+            "fpr": true,
+            "precision_at_5pct": true
+          }
+        },
+        "negation_gate": {
+          "recall": 0.076,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": true
+          }
+        },
+        "numeric_gate": {
+          "recall": 0.706,
+          "fpr": 0.0,
+          "precision_at_5pct": 1.0,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": false,
+            "precision_at_5pct": true
+          }
+        },
+        "ship_stack": {
+          "recall": 0.975,
+          "fpr": 0.004,
+          "precision_at_5pct": 0.9276879162702188,
+          "n": 2000,
+          "meets_ship": {
+            "recall": true,
+            "fpr": true,
+            "precision_at_5pct": true
+          }
+        },
+        "spark_veracity": {
+          "recall": 0.889,
+          "fpr": 0.004,
+          "precision_at_5pct": 0.9212435233160622,
+          "n": 2000,
+          "meets_ship": {
+            "recall": false,
+            "fpr": true,
+            "precision_at_5pct": true
+          }
+        }
+      }
     }
   },
-  "ship_targets": {
-    "recall_min": 0.95,
-    "fpr_max": 0.012,
-    "precision_at_5pct_min": 0.8,
-    "ece_max": 0.1
+  "latest_ship": {
+    "run_id": "pilot-10",
+    "plane": "gated_ship",
+    "decision": "YES",
+    "recall": 0.974,
+    "fpr": 0.002,
+    "precision_at_5pct": 0.9624505928853755,
+    "generator": "0.2.0",
+    "prompt": "v5.4",
+    "prompt_hash12": "0105f91470e7",
+    "n_cases": 2000,
+    "n_errors": 0,
+    "completed": "2026-07-26",
+    "findings": "FINDINGS-PILOT-10.md"
   }
 }

@@ -1,19 +1,22 @@
-# Sovereign Veracity Critic — Pilot-02 Results (n=2000)
+# Sovereign Veracity Critic — Pilot-10 SHIP YES
 
-**Open method, harness design, baselines, failure analysis, and ensemble backtests for a local-first veracity stack (Node2-based).**
+**Open method, harness design, baselines, and ship-floor results for a local-first faithfulness / confabulation stack.**
 
-| Stack | Best for | Recall | FPR | Prec@5% |
-|-------|----------|--------|-----|---------|
-| **precision_stack** | Gating when false flags are costly | 0.944 | **0.000** | **1.000** |
-| **ship_stack** | Max catch rate when you can absorb flags | **0.989** | 0.075 | 0.410 |
+| Stack | Role | Recall | FPR | Prec@5% | Ship? |
+|-------|------|-------:|----:|--------:|:-----:|
+| **gated_ship** (pilot-10) | Official ship plane | **0.974** | **0.002** | **0.962** | **YES** |
+| ship_stack (pilot-10) | Spark ∨ det gates | 0.975 | 0.004 | 0.928 | partial* |
+| spark_veracity alone | Primary LLM | 0.889 | 0.004 | 0.921 | N |
 
-Full details, caveats (single-seed corpus, prompt iteration effects), and failure slices: **[`AGENT_SYNOPSIS.md`](./AGENT_SYNOPSIS.md)** — built for sovereign agents: fork, extend, improve.
+\*Ship requires all three floors; ship_stack FPR still under target but gated_ship is the locked plane.
+
+**Details:** [`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md) · machine tables [`runs/pilot-10/`](./runs/pilot-10/)
 
 ---
 
 ## Why this matters
 
-The future is open source. We need to embrace it and get on with it. If AI is the through line of future economic (and security) activity, locking the stack behind closed models that cost **$26–56 per 1M tokens** while open / local intelligence runs at roughly **$0.50–1** (or free on your own silicon) is not a branding preference—it is a structural handicap: commercial and strategic. Adversaries and competitors who can train, critique, and deploy on abundant open weights should not be the only ones who can afford to do so at scale. That is the abundance and open-ecosystem argument in plain numbers—the same pressure [open-source AI advocacy](https://x.com/chamath) keeps returning to: close the door on open source and you force a ruinous cost asymmetry on defense *and* growth. **Sovereign Veracity** is a small, concrete piece of that stack: local-first *measurement* of faithfulness critics (Node2 / Lynx / ensembles), so sovereign agents can be judged without a cloud tax and without outsourcing the scoreboard. Fork it, re-seed it, beat the numbers.
+The future is open source. We need to embrace it and get on with it. If AI is the through line of future economic (and security) activity, locking the stack behind closed models that cost **$26–56 per 1M tokens** while open / local intelligence runs at roughly **$0.50–1** (or free on your own silicon) is not a branding preference—it is a structural handicap: commercial and strategic. **Sovereign Veracity** is a small, concrete piece of that stack: local-first *measurement* of faithfulness critics, so sovereign agents can be judged without a cloud tax and without outsourcing the scoreboard. Fork it, re-seed it, beat the numbers.
 
 ---
 
@@ -21,6 +24,7 @@ The future is open source. We need to embrace it and get on with it. If AI is th
 
 | Reader | Entry |
 |--------|--------|
+| **Latest findings** | [`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md) |
 | **Agents / automation** | [`AGENT_SYNOPSIS.md`](./AGENT_SYNOPSIS.md) |
 | **Method & Node2 mapping** | [`METHOD.md`](./METHOD.md) |
 | **Machine index** | [`index.json`](./index.json) |
@@ -30,113 +34,56 @@ The future is open source. We need to embrace it and get on with it. If AI is th
 
 ## What this is
 
-A **local, zero-cloud-API** evaluation package for faithfulness / confabulation critics used with a sovereign Node2-style stack:
+A **local, zero-cloud-API** evaluation package for faithfulness / confabulation critics:
 
-- Ground truth is **generated**, not hand-labeled: extractive clean cases + one deterministic corruption per confabulated case.
-- Pilots measure **Node2 critic** (`patronus-lynx`), **HHEM**, a **secondary LLM judge**, a **deterministic numeric gate**, and **ensembles**.
+- Ground truth is **generated**, not hand-labeled: extractive clean cases + deterministic corruption(s) per confabulated case.
 - Positive class = **confabulated**. Precision is reported at realistic prevalence (3/5/8%), not the artificial 50/50 corpus split.
+- **Ship floors (pre-registered, fail-closed):** recall ≥ 0.95 · FPR ≤ 0.012 · P@5% ≥ 0.80.
 
-**Harness source** (sibling in this monorepo layout): `sv-testgen/`. This package is metrics + method + agent docs—not a dump of evaluation databases.
+**Harness source** (sibling in the lab monorepo layout): `sv-testgen/`. This package is metrics + method + agent docs—not a dump of evaluation databases.
 
 ---
 
-## Headline results
-
-### Pre-registered ship targets
+## Pre-registered ship targets
 
 | Metric | Target |
 |--------|--------|
 | Recall | ≥ 0.95 |
-| FPR | ≲ 0.012 |
+| FPR | ≤ 0.012 |
 | Precision @ 5% prevalence | ≥ 0.80 |
 
-### Pilot-01 — baseline prompts (n=2000, 0 errors)
+---
 
-*Corpus note: single synthetic steel brief seed for all 2000 cases (same seed as pilot-02).*
+## Headline timeline
 
-| Judge | Acc | Recall | FPR | Prec@5% |
-|-------|-----|--------|-----|---------|
-| node2_critic (patronus-lynx) | 0.933 | 0.901 | 0.034 | 0.582 |
-| secondary_judge (qwen3.5:35b) | 0.977 | 0.954 | 0.000 | 1.000 |
-| hhem_gate | 0.741 | 0.731 | 0.250 | 0.133 |
+| Run | What | Ship? |
+|-----|------|:-----:|
+| [pilot-01](./runs/pilot-01/) | Early Node2 / secondary baselines | — |
+| [pilot-02](./runs/pilot-02/) | Ensembles, numeric gate, precision vs ship stacks | — |
+| [pilot-09](./runs/pilot-09/) | Gen 0.1.6 + prompt v5.3, A bare + det_gates | **YES** |
+| [**pilot-10**](./runs/pilot-10/) | Gen **0.2.0** + prompt **v5.4**, multi-voice / code_review | **YES** |
 
-### Pilot-02 — hardened prompt v2 + numeric + ensembles (n=2000, 0 errors)
+### Pilot-10 component snapshot (n=2000 confab / 2000 clean)
 
-| Judge / stack | Acc | Recall | FPR | Prec@5% |
-|---------------|-----|--------|-----|---------|
-| node2_critic (v2) | 0.897 | 0.869 | 0.074 | 0.382 |
-| secondary_judge | 0.987 | 0.975 | 0.001 | 0.981 |
-| numeric_gate | 0.804 | 0.608 | 0.000 | 1.000 |
-| hhem_gate | 0.741 | 0.731 | 0.250 | 0.133 |
-| **ship_stack** (N2 ∨ sec ∨ numeric) | 0.957 | **0.989** | 0.075 | 0.410 |
-| **precision_stack** (numeric ∨ (N2 ∧ sec)) | **0.972** | 0.944 | **0.000** | **1.000** |
+| Judge | Recall | FPR | Prec@5% |
+|-------|-------:|----:|--------:|
+| gated_ship | 0.974 | 0.002 | 0.962 |
+| ship_stack | 0.975 | 0.004 | 0.928 |
+| spark_veracity | 0.889 | 0.004 | 0.921 |
+| numeric_gate | 0.706 | 0.000 | 1.000 |
+| date_gate | 0.064 | 0.000 | 1.000 |
+| negation_gate | 0.076 | 0.000 | 1.000 |
 
-### Recommendation
-
-- **Production gating (prefer few false flags):** `precision_stack` — excellent FPR/precision; recall 0.6pp under the 0.95 bar on this corpus.
-- **Max recall (can triage flags):** `ship_stack` — 0.989 recall; FPR inherits Node2 false positives.
-- **Do not claim** Node2 alone as production-ready on these pilots (pilot-02 FPR 0.074, recall 0.869).
+Det gates: **zero FP** on this run. Weakest category: `code_review` rec **0.900** (see findings autopsy).
 
 ---
 
-## Unsupported generalization (key failure slice)
+## Soft spot (documented, not papered over)
 
-Hedge upgrades (`may` → `will`) were the hardest class under pilot-01.
-
-| Judge / stack | Pilot-01 | Pilot-02 |
-|---------------|----------|----------|
-| node2_critic | 0.482 | **0.857** |
-| secondary_judge | 0.446 | **1.000** |
-| ship_stack | — | **1.000** |
-| precision_stack | — | 0.857 |
-
-Prompt hardening helped modality; ensembles close remaining gaps differently (recall vs precision).
+Pilot-10 `code_review` misses were mostly **near-copy** edits (`not` injection, markdown chevron artifacts, digit ±1)—not a failure of the overall ship claim. Lab follow-up (generator **0.2.1** + gate HC paths) addresses that class without rewriting pilot-10 scores. Details: [`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md).
 
 ---
 
-## Runs on disk
+## License
 
-| Run | n | Description |
-|-----|---|-------------|
-| [`runs/pilot-01/`](./runs/pilot-01/) | 2000 | Baseline prompts; Node2 + secondary + HHEM |
-| [`runs/pilot-02/`](./runs/pilot-02/) | 2000 | Hardened prompt + numeric_gate + ensembles |
-| [`runs/pilot-02-smoke/`](./runs/pilot-02-smoke/) | 15 | Plumbing smoke only |
-
-Each run: `METRICS.md` + `metrics.json`.
-
----
-
-## Caveats (please keep these when citing)
-
-1. **Single seed** — corpus is 2000 cases derived from one short public-style steel market brief, not a multi-document production mix.
-2. **Synthetic corruptions** — template taxonomy (number_perturb, negation_flip, entity_swap, fabricated_detail, unsupported_generalization, …).
-3. **Validation, not training** — designed so the critic under test has not been trained on this set; still, patterns can overfit templates.
-4. **Prompt iteration** — pilot-02 v2 improved hedges but increased Node2 FPR vs pilot-01; stacks matter more than any single 8B critic.
-5. **No raw eval DB in this package** — regenerate with the harness if you need case-level data; keep proprietary seeds private.
-
-See also [`NOTICE.md`](./NOTICE.md).
-
----
-
-## Reproduce (high level)
-
-```bash
-# Harness lives next to this package in the lab layout:
-cd sv-testgen
-python generator.py --target 2000 --db sv_corpus.db
-python evaluator.py --db sv_corpus.db --config config.json --run-id my-run
-python report.py --db sv_corpus.db --run-id my-run
-python _export_benchmarks.py   # refreshes this benchmarks tree
-```
-
-Details: [`METHOD.md`](./METHOD.md) and [`AGENT_SYNOPSIS.md`](./AGENT_SYNOPSIS.md).
-
----
-
-## Contributing & license
-
-- **License:** [MIT](./LICENSE)  
-- **Collaborate:** [CONTRIBUTING.md](./CONTRIBUTING.md) · [Code of Conduct](./.github/CODE_OF_CONDUCT.md)  
-- **Boundaries:** [NOTICE.md](./NOTICE.md) (what not to overclaim; keep proprietary seeds private)
-
-Built for sovereign agents — **fork, extend, improve.**
+MIT — see [`LICENSE`](./LICENSE). Method docs and metrics are for reuse; do not present two different pilots under the same run_id.
