@@ -10,6 +10,8 @@
 
 \*Ship requires all three floors; ship_stack FPR still under target but gated_ship is the locked plane.
 
+**Label:** recall **0.974** / FPR **0.002** are **self-graded / builder-authored** (machine GT). Not independent third-party eval. Not a store price. Shelf: [`../../sovereign-veracity/PUBLIC_SHELF.md`](../../sovereign-veracity/PUBLIC_SHELF.md).
+
 **Details:** [`FINDINGS-PILOT-10.md`](./FINDINGS-PILOT-10.md) · machine tables [`runs/pilot-10/`](./runs/pilot-10/)
 
 ---
@@ -76,6 +78,8 @@ A **local, zero-cloud-API** evaluation package for faithfulness / confabulation 
 Machine index for all of the above: [`index.json`](./index.json).
 
 ### Pilot-10 component snapshot (n=2000 confab / 2000 clean)
+
+**Self-graded / builder-authored** (machine GT). gated_ship 0.974 / 0.002 is not a price.
 
 | Judge | Recall | FPR | Prec@5% |
 |-------|-------:|----:|--------:|

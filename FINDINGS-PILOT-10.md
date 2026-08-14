@@ -4,9 +4,21 @@
 **Decision:** **SHIP YES** under pre-registered §1c floors (fail-closed point estimates)  
 **Ship plane:** `gated_ship` (extractive gate + Spark primary + det gates: numeric / date / negation)
 
+### Independent Evaluation Rule (who wrote the test)
+
+| Disclosure | Pilot-10 |
+|------------|----------|
+| **Test authorship** | **builder-authored tests** — machine ground truth at generation time (extractive cleans + deterministic corruptions) |
+| **Independence / held-out** | **self-graded** against lab GT; not an external human-labeled corpus. Det gates are deterministic but lab-authored. |
+| **Self-grade honesty** | **Say it plainly:** this is a **lab pilot with pre-registered floors**, not independent third-party certification. |
+
+Public shelf twin: `../../sovereign-veracity/PUBLIC_SHELF.md` (Bundle A).
+
 ---
 
 ## Official floors
+
+**Self-graded / builder-authored** (machine GT). Recall **0.974** / FPR **0.002** is not a price.
 
 | Metric | Floor | Result | |
 |--------|------:|-------:|---|
@@ -75,6 +87,6 @@ Pilot-09 (also exported here) is the prior ship lock under generator **0.1.6** /
 ## How to cite
 
 ```text
-Sovereign Veracity pilot-10 (2026-07-26): gated_ship rec=0.974 FPR=0.002 P@5%=0.962 — SHIP YES.
+Sovereign Veracity pilot-10 (2026-07-26): gated_ship rec=0.974 FPR=0.002 P@5%=0.962 — SHIP YES (self-graded / builder-authored machine GT).
 See https://github.com/Kadatha/sovereign-veracity runs/pilot-10/
 ```
