@@ -1,4 +1,6 @@
-# Sovereign Veracity Critic — Pilot-10 SHIP YES
+# Sovereign Veracity Critic: Pilot-10 (self-graded), now re-testing on real lab claims
+
+> **Status, October 2026: re-testing.** The Pilot-10 numbers below come from a generated test set, graded by the same lab that built the critic. When the critic was put to work on the lab's real output, its number check raised false alarms on correct claims, so I pulled it back and moved the lab's critic job to a frontier model. It is now being re-tested on claims taken from the lab's own receipts, on an upgraded server. New results will be published here, including what fails.
 
 **Open method, harness design, baselines, and ship-floor results for a local-first faithfulness / confabulation stack.**
 
