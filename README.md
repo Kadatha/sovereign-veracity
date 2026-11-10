@@ -1,6 +1,8 @@
-# Sovereign Veracity Critic: Pilot-10 (self-graded), now re-testing on real lab claims
+# Sovereign Veracity Critic: Pilot-10 (self-graded), retired November 2026
 
-> **Status, October 2026: re-testing.** The Pilot-10 numbers below come from a generated test set, graded by the same lab that built the critic. When the critic was put to work on the lab's real output, its number check raised false alarms on correct claims, so I pulled it back and moved the lab's critic job to a frontier model. It is now being re-tested on claims taken from the lab's own receipts, on an upgraded server. New results will be published here, including what fails.
+> **Status, November 2026: retired.** The Pilot-10 numbers below come from a generated test set, graded by the same lab that built the critic. On the lab's real output the critic did not hold up. In a log-only trial on real posts, 1 of the 15 flags I reviewed was a real catch. The Pilot-10 setup also missed its own false-positive floor when the judge model was changed (recall 0.997, FPR 0.014 against a floor of 0.012). And several of the deterministic checks mirror the edits the test generator makes, so the headline numbers overstate what the critic does on other text. I have stopped work on it. The method notes and run data stay here as a record; read the numbers as history, not as a claim about real-world accuracy.
+
+> Earlier status, October 2026, kept for the record: The Pilot-10 numbers below come from a generated test set, graded by the same lab that built the critic. When the critic was put to work on the lab's real output, its number check raised false alarms on correct claims, so I pulled it back and moved the lab's critic job to a frontier model. It is now being re-tested on claims taken from the lab's own receipts, on an upgraded server. New results will be published here, including what fails.
 
 **Open method, harness design, baselines, and ship-floor results for a local-first faithfulness / confabulation stack.**
 
